@@ -1,0 +1,1620 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Unit 10 Mastery Check – Solution Guide</title>
+  <script>
+    MathJax = {
+      tex: {
+        inlineMath: [['\\(', '\\)']],
+        displayMath: [['\\[', '\\]']],
+        tags: 'none'
+      },
+      options: { skipHtmlTags: ['script','noscript','style','textarea','pre'] }
+    };
+  </script>
+  <script async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Bitter:ital,wght@0,300;0,400;0,600;1,300;1,400&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet"/>
+
+  <style>
+    :root {
+      --ink:       #1a1a2e;
+      --paper:     #faf8f3;
+      --cream:     #f2ede3;
+      --rule:      #d6ccb8;
+      --accent:    #8b2e16;
+      --gold:      #c49a3c;
+      --muted:     #6b6456;
+      --highlight: #e8f4e8;
+      --radius: 4px;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Bitter', Georgia, serif;
+      font-weight: 300;
+      background: var(--paper);
+      color: var(--ink);
+      font-size: 17px;
+      line-height: 1.7;
+      padding: 0 0 80px;
+    }
+
+    /* ── Header ── */
+    header {
+      background: var(--ink);
+      color: var(--paper);
+      padding: 48px 60px 36px;
+      border-bottom: 4px solid var(--gold);
+      position: relative;
+      overflow: hidden;
+    }
+    header::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: repeating-linear-gradient(
+        -45deg,
+        transparent,
+        transparent 18px,
+        rgba(255,255,255,0.015) 18px,
+        rgba(255,255,255,0.015) 36px
+      );
+      pointer-events: none;
+    }
+    header h1 {
+      font-family: 'Libre Baskerville', serif;
+      font-size: 2.1rem;
+      font-weight: 700;
+      letter-spacing: 0.01em;
+      color: #fff;
+    }
+    header .subtitle {
+      margin-top: 6px;
+      font-family: 'Bitter', serif;
+      font-style: italic;
+      font-weight: 300;
+      font-size: 1.05rem;
+      color: var(--gold);
+      letter-spacing: 0.04em;
+    }
+    header .meta {
+      margin-top: 14px;
+      font-size: 0.82rem;
+      font-family: 'IBM Plex Mono', monospace;
+      color: rgba(255,255,255,0.45);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+
+    /* ── Layout ── */
+    .container {
+      max-width: 820px;
+      margin: 0 auto;
+      padding: 0 32px;
+    }
+
+    .toc {
+      background: var(--cream);
+      border: 1px solid var(--rule);
+      border-top: 3px solid var(--accent);
+      border-radius: var(--radius);
+      padding: 28px 36px;
+      margin: 40px 0 48px;
+    }
+    .toc h2 {
+      font-family: 'Libre Baskerville', serif;
+      font-size: 0.9rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 14px;
+    }
+    .toc ol {
+      padding-left: 1.4em;
+      font-size: 0.95rem;
+      color: var(--muted);
+      line-height: 2;
+    }
+    .toc a { color: var(--ink); text-decoration: none; border-bottom: 1px solid var(--rule); }
+    .toc a:hover { color: var(--accent); border-color: var(--accent); }
+
+    /* ── Problem card ── */
+    .problem {
+      border: 1px solid var(--rule);
+      border-radius: var(--radius);
+      margin-bottom: 48px;
+      overflow: hidden;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+    }
+
+    .problem-header {
+      background: var(--ink);
+      color: #fff;
+      padding: 14px 28px;
+      display: flex;
+      align-items: baseline;
+      gap: 18px;
+    }
+    .problem-num {
+      font-family: 'Libre Baskerville', serif;
+      font-size: 1.5rem;
+      color: var(--gold);
+      min-width: 2rem;
+    }
+    .problem-title {
+      font-family: 'Bitter', serif;
+      font-style: italic;
+      font-weight: 300;
+      font-size: 1rem;
+      color: rgba(255,255,255,0.8);
+    }
+
+    .problem-prompt {
+      background: var(--cream);
+      border-bottom: 1px solid var(--rule);
+      padding: 20px 28px;
+      font-family: 'Bitter', serif;
+      font-style: italic;
+      font-weight: 300;
+    }
+    .problem-prompt .series-display {
+      margin-top: 12px;
+      font-style: normal;
+      text-align: center;
+    }
+
+    .solution-body {
+      padding: 28px 32px;
+    }
+
+    /* Steps */
+    .step {
+      margin-bottom: 22px;
+      padding-left: 16px;
+      border-left: 3px solid var(--rule);
+      transition: border-color 0.2s;
+    }
+    .step:hover { border-color: var(--gold); }
+
+    .step-label {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 0.68rem;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: var(--accent);
+      margin-bottom: 4px;
+    }
+
+    .math-block {
+      background: #f7f4ef;
+      border: 1px solid var(--rule);
+      border-radius: 2px;
+      padding: 14px 20px;
+      margin: 10px 0;
+      overflow-x: auto;
+      text-align: center;
+    }
+
+    .conclusion {
+      background: var(--highlight);
+      border: 1px solid #b2d5b2;
+      border-left: 4px solid #4a9e4a;
+      border-radius: var(--radius);
+      padding: 14px 20px;
+      margin-top: 18px;
+      font-weight: 600;
+      font-size: 1rem;
+    }
+
+    .note {
+      background: #fdf6e3;
+      border: 1px solid #e8d9a0;
+      border-left: 4px solid var(--gold);
+      border-radius: var(--radius);
+      padding: 12px 18px;
+      margin-top: 14px;
+      font-size: 0.92rem;
+      color: #5a4a20;
+      font-style: italic;
+    }
+
+    .divider {
+      border: none;
+      border-top: 1px solid var(--rule);
+      margin: 32px 0;
+    }
+
+    /* Test badge */
+    .test-badge {
+      display: inline-block;
+      background: var(--accent);
+      color: #fff;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      padding: 2px 8px;
+      border-radius: 2px;
+      margin-bottom: 10px;
+    }
+
+    .back-to-top {
+      display: block;
+      text-align: right;
+      padding: 10px 20px 14px;
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 0.68rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--muted);
+      text-decoration: none;
+      border-top: 1px solid var(--rule);
+      transition: color 0.2s;
+    }
+    .back-to-top:hover { color: var(--accent); }
+
+    footer {
+      text-align: center;
+      color: var(--muted);
+      font-size: 0.82rem;
+      font-style: italic;
+      margin-top: 60px;
+      padding-top: 24px;
+      border-top: 1px solid var(--rule);
+    }
+
+    /* ══════════════════════════════════════════
+       CHECK YOUR UNDERSTANDING — CYU STYLES
+    ══════════════════════════════════════════ */
+    :root {
+      --quiz-bg:     #1e2a3a;
+      --quiz-border: #2e4a6a;
+      --quiz-accent: #4a90c4;
+      --quiz-gold:   #e8b84b;
+    }
+
+    .cyu-toggle {
+      display: flex; align-items: center; gap: 12px;
+      padding: 18px 32px;
+      background: var(--quiz-bg);
+      border-top: 1px solid var(--quiz-border);
+      cursor: pointer; user-select: none; transition: background 0.2s;
+    }
+    .cyu-toggle:hover { background: #243040; }
+    .cyu-toggle-icon {
+      width: 28px; height: 28px; border-radius: 50%;
+      background: var(--quiz-accent);
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0; font-size: 1rem; color: #fff; font-weight: 700;
+      transition: transform 0.3s;
+    }
+    .cyu-toggle-icon.open { transform: rotate(45deg); }
+    .cyu-toggle-text {
+      font-family: 'Libre Baskerville', serif; font-size: 0.88rem; font-weight: 700;
+      color: #fff; letter-spacing: 0.04em; text-transform: uppercase;
+    }
+    .cyu-toggle-sub {
+      font-family: 'Bitter', serif; font-style: italic; font-weight: 300;
+      font-size: 0.82rem; color: rgba(255,255,255,0.45); margin-left: auto;
+    }
+
+    .cyu-panel {
+      display: none; background: var(--quiz-bg);
+      border-top: 1px solid var(--quiz-border); padding: 0 0 28px;
+    }
+    .cyu-panel.open { display: block; }
+
+    .cyu-progress-bar  { height: 3px; background: var(--quiz-border); margin-bottom: 28px; }
+    .cyu-progress-fill { height: 100%; background: var(--quiz-accent); transition: width 0.5s ease; width: 0%; }
+
+    .cyu-question { padding: 0 32px; margin-bottom: 32px; }
+    .cyu-q-number {
+      font-family: 'IBM Plex Mono', monospace; font-size: 0.65rem;
+      text-transform: uppercase; letter-spacing: 0.14em;
+      color: var(--quiz-accent); margin-bottom: 8px;
+    }
+    .cyu-q-text {
+      font-family: 'Bitter', serif; font-weight: 400; font-size: 1rem;
+      color: #e8e4dc; line-height: 1.6; margin-bottom: 16px;
+    }
+
+    .cyu-choices { display: flex; flex-direction: column; gap: 8px; margin-bottom: 14px; }
+    .cyu-choice {
+      display: flex; align-items: flex-start; gap: 12px;
+      padding: 12px 16px; border: 1px solid var(--quiz-border); border-radius: 3px;
+      cursor: pointer; background: rgba(255,255,255,0.04);
+      transition: background 0.15s, border-color 0.15s;
+      text-align: left; width: 100%; color: #c8c4bc;
+      font-family: 'Bitter', serif; font-weight: 300; font-size: 0.95rem; line-height: 1.5;
+    }
+    .cyu-choice:hover:not(:disabled) { background: rgba(74,144,196,0.12); border-color: var(--quiz-accent); color: #e8e4dc; }
+    .cyu-choice:disabled { cursor: default; }
+    .cyu-choice-letter {
+      font-family: 'IBM Plex Mono', monospace; font-size: 0.75rem; font-weight: 500;
+      color: var(--quiz-accent); min-width: 1.4rem; padding-top: 2px; flex-shrink: 0;
+    }
+    .cyu-choice.selected { border-color: var(--quiz-accent); background: rgba(74,144,196,0.15); }
+    .cyu-choice.correct  { border-color: #52b788; background: rgba(82,183,136,0.15); color: #b7e4c7; }
+    .cyu-choice.correct .cyu-choice-letter { color: #52b788; }
+    .cyu-choice.wrong    { border-color: #e63946; background: rgba(230,57,70,0.12); color: #f4a0a6; }
+    .cyu-choice.wrong .cyu-choice-letter { color: #e63946; }
+    .cyu-choice.dimmed   { opacity: 0.35; }
+
+    .cyu-check-wrap { min-height: 38px; }
+    .cyu-check {
+      padding: 9px 22px; background: var(--quiz-accent); color: #fff;
+      border: none; border-radius: 3px; font-family: 'IBM Plex Mono', monospace;
+      font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.1em;
+      cursor: pointer; transition: background 0.2s, opacity 0.2s;
+      opacity: 0; pointer-events: none;
+    }
+    .cyu-check.ready { opacity: 1; pointer-events: all; }
+    .cyu-check.ready:hover { background: #3a7ab4; }
+
+    .cyu-feedback { display: none; margin-top: 14px; border-radius: 3px; overflow: hidden; }
+    .cyu-feedback.show { display: block; }
+    .cyu-feedback-verdict {
+      padding: 11px 16px; font-family: 'Libre Baskerville', serif;
+      font-size: 0.88rem; font-weight: 700;
+    }
+    .cyu-feedback-verdict.correct-v { background: rgba(82,183,136,0.2); color: #52b788; border-left: 3px solid #52b788; }
+    .cyu-feedback-verdict.wrong-v   { background: rgba(230,57,70,0.15); color: #e63946; border-left: 3px solid #e63946; }
+    .cyu-explanation {
+      margin-top: 10px; padding: 14px 16px;
+      background: rgba(232,184,75,0.08); border: 1px solid rgba(232,184,75,0.25); border-radius: 3px;
+      color: #d4c484; font-family: 'Bitter', serif; font-weight: 300; font-size: 0.92rem; line-height: 1.65;
+    }
+    .cyu-explanation strong { color: var(--quiz-gold); font-weight: 600; }
+
+    .cyu-divider { border: none; border-top: 1px solid var(--quiz-border); margin: 0 32px 28px; }
+
+    .cyu-summary {
+      display: none; margin: 0 32px; padding: 20px;
+      background: rgba(74,144,196,0.1); border: 1px solid var(--quiz-accent);
+      border-radius: 3px; text-align: center;
+    }
+    .cyu-summary.show { display: block; }
+    .cyu-summary-score { font-family: 'Libre Baskerville', serif; font-size: 1.6rem; font-weight: 700; color: var(--quiz-gold); }
+    .cyu-summary-text  { font-family: 'Bitter', serif; font-style: italic; font-weight: 300; font-size: 0.9rem; color: rgba(255,255,255,0.55); margin-top: 6px; }
+    .cyu-retry {
+      margin-top: 14px; background: none; border: 1px solid var(--quiz-accent);
+      color: var(--quiz-accent); font-family: 'IBM Plex Mono', monospace;
+      font-size: 0.68rem; text-transform: uppercase; letter-spacing: 0.1em;
+      padding: 7px 18px; border-radius: 3px; cursor: pointer; transition: background 0.2s, color 0.2s;
+    }
+    .cyu-retry:hover { background: var(--quiz-accent); color: #fff; }
+  </style>
+</head>
+<body>
+
+<header id="top">
+  <div class="container">
+    <h1>Unit 10 Mastery Check</h1>
+    <div class="subtitle">Solution Guide — Infinite Series &amp; Power Series</div>
+    <div class="meta">AP Calculus BC · Spring 2026 · Teacher Edition</div>
+  </div>
+</header>
+
+<div class="container">
+
+  <div class="toc">
+    <h2>Contents</h2>
+    <ol>
+      <li><a href="#p1">Geometric Series — Convergence &amp; Sum</a></li>
+      <li><a href="#p2">Integral Test with Error Bounds</a></li>
+      <li><a href="#p3">Comparison Test (Direct or Limit)</a></li>
+      <li><a href="#p4">Alternating Series Test</a></li>
+      <li><a href="#p5">Absolute vs. Conditional Convergence</a></li>
+      <li><a href="#p6">Ratio Test</a></li>
+      <li><a href="#p7">Root Test</a></li>
+      <li><a href="#p8">Radius &amp; Interval of Convergence (Power Series)</a></li>
+      <li><a href="#p9">Power Series Representation — Geometric</a></li>
+      <li><a href="#p10">Power Series via Integration</a></li>
+      <li><a href="#p11">Taylor Polynomial Approximation</a></li>
+    </ol>
+  </div>
+
+  <!-- ══════════════════════════════════════════════════════════ -->
+  <!-- Problem 1 -->
+  <!-- ══════════════════════════════════════════════════════════ -->
+  <div class="problem" id="p1">
+    <div class="problem-header">
+      <span class="problem-num">1</span>
+      <span class="problem-title">Geometric Series — Convergence &amp; Sum</span>
+    </div>
+    <div class="problem-prompt">
+      Determine whether the series converges or diverges. If it converges, find its sum.
+      <div class="series-display">\[ \sum_{n=0}^{\infty} \frac{e}{3^n} \]</div>
+    </div>
+    <div class="solution-body">
+
+      <div class="step">
+        <div class="step-label">Identify the Series Type</div>
+        This is a <strong>geometric series</strong>. Factor out the constant \(e\) and write in standard form:
+        <div class="math-block">
+          \[ \sum_{n=0}^{\infty} \frac{e}{3^n} = e\sum_{n=0}^{\infty} \left(\frac{1}{3}\right)^n \]
+        </div>
+        So \(a = e\) and \(r = \dfrac{1}{3}\).
+      </div>
+
+      <div class="step">
+        <div class="step-label">Apply the Geometric Series Convergence Test</div>
+        A geometric series converges if and only if \(|r| < 1\).
+        <div class="math-block">\[ \left|\frac{1}{3}\right| = \frac{1}{3} < 1 \quad \checkmark \]</div>
+        The series <strong>converges</strong>.
+      </div>
+
+      <div class="step">
+        <div class="step-label">Find the Sum</div>
+        For a convergent geometric series \(\displaystyle\sum_{n=0}^{\infty} ar^n = \dfrac{a}{1-r}\):
+        <div class="math-block">
+          \[ S = e\sum_{n=0}^{\infty}\left(\frac{1}{3}\right)^n = e\cdot\frac{1}{1-\tfrac{1}{3}} = e\cdot\frac{1}{\tfrac{2}{3}} = e\cdot\frac{3}{2} = \frac{3e}{2} \]
+        </div>
+      </div>
+
+      <div class="conclusion">
+        The series converges. Its sum is \(S = \dfrac{3e}{2}\).
+      </div>
+
+    </div>
+
+    <!-- ══════ CHECK YOUR UNDERSTANDING — P1 ══════ -->
+    <div class="cyu-toggle" onclick="toggleCYU(this)">
+      <div class="cyu-toggle-icon">+</div>
+      <span class="cyu-toggle-text">Check Your Understanding</span>
+      <span class="cyu-toggle-sub">4 questions · read the solution first</span>
+    </div>
+
+    <div class="cyu-panel" id="cyu-p1">
+      <div class="cyu-progress-bar">
+        <div class="cyu-progress-fill" id="cyu-p1-progress"></div>
+      </div>
+
+      <!-- Q1 -->
+      <div class="cyu-question">
+        <div class="cyu-q-number">Question 1 of 4</div>
+        <div class="cyu-q-text">
+          What two features of \(\dfrac{e}{3^n}\) identify this as a geometric series rather than a \(p\)-series?
+        </div>
+        <div class="cyu-choices">
+          <button class="cyu-choice" data-correct="false" onclick="selectChoice(this)">
+            <span class="cyu-choice-letter">A</span>
+            <span>The terms decrease toward zero and the series has a finite sum.</span>
+          </button>
+          <button class="cyu-choice" data-correct="true" onclick="selectChoice(this)">
+            <span class="cyu-choice-letter">B</span>
+            <span>The variable \(n\) appears as an exponent, so each term is a constant multiple of the previous — giving a fixed ratio \(r = \tfrac{1}{3}\).</span>
+          </button>
+          <button class="cyu-choice" data-correct="false" onclick="selectChoice(this)">
+            <span class="cyu-choice-letter">C</span>
+            <span>The variable \(n\) appears in the denominator, and the constant \(e\) appears in the numerator.</span>
+          </button>
+          <button class="cyu-choice" data-correct="false" onclick="selectChoice(this)">
+            <span class="cyu-choice-letter">D</span>
+            <span>The series starts at \(n = 0\) and the ratio satisfies \(|r| &lt; 1\).</span>
+          </button>
+        </div>
+        <div class="cyu-check-wrap">
+          <button class="cyu-check" onclick="checkAnswer(this)">Check Answer &amp; See Explanation</button>
+        </div>
+        <div class="cyu-feedback">
+          <div class="cyu-feedback-verdict"></div>
+          <div class="cyu-explanation">
+            <strong>Explanation:</strong> A geometric series is defined by a <em>constant ratio</em> between successive terms. Here \(\frac{a_{n+1}}{a_n} = \frac{e/3^{n+1}}{e/3^n} = \frac{1}{3}\) for every \(n\) — that fixed ratio is the defining feature. A \(p\)-series has the form \(\sum \frac{1}{n^p}\), where the variable is the <em>base</em>, not the exponent. Choice A describes a consequence of convergence, not a definition. Choice D correctly identifies the convergence condition but says nothing about why the series is geometric.
+          </div>
+        </div>
+      </div>
+
+      <hr class="cyu-divider"/>
+
+      <!-- Q2 -->
+      <div class="cyu-question">
+        <div class="cyu-q-number">Question 2 of 4</div>
+        <div class="cyu-q-text">
+          What is the significance of the index starting at \(n = 0\) rather than \(n = 1\)?
+        </div>
+        <div class="cyu-choices">
+          <button class="cyu-choice" data-correct="false" onclick="selectChoice(this)">
+            <span class="cyu-choice-letter">A</span>
+            <span>None — the starting index never affects the sum of a geometric series.</span>
+          </button>
+          <button class="cyu-choice" data-correct="false" onclick="selectChoice(this)">
+            <span class="cyu-choice-letter">B</span>
+            <span>It changes the convergence behavior; starting at \(n = 1\) would cause the series to diverge.</span>
+          </button>
+          <button class="cyu-choice" data-correct="true" onclick="selectChoice(this)">
+            <span class="cyu-choice-letter">C</span>
+            <span>The formula \(\dfrac{a}{1-r}\) applies directly with \(a = e\), since the \(n=0\) term is \(e \cdot r^0 = e\). Starting at \(n=1\) would exclude that term, giving the smaller sum \(\dfrac{e}{2}\).</span>
+          </button>
+          <button class="cyu-choice" data-correct="false" onclick="selectChoice(this)">
+            <span class="cyu-choice-letter">D</span>
+            <span>Starting at \(n = 0\) means we must re-index before applying the geometric sum formula.</span>
+          </button>
+        </div>
+        <div class="cyu-check-wrap">
+          <button class="cyu-check" onclick="checkAnswer(this)">Check Answer &amp; See Explanation</button>
+        </div>
+        <div class="cyu-feedback">
+          <div class="cyu-feedback-verdict"></div>
+          <div class="cyu-explanation">
+            <strong>Explanation:</strong> The starting index determines the first term \(a\) in \(S = \frac{a}{1-r}\). At \(n=0\), the first term is \(\frac{e}{3^0} = e\), so \(S = \frac{3e}{2}\). Had the series started at \(n=1\), the first term would be \(\frac{e}{3}\), giving \(S = \frac{e/3}{2/3} = \frac{e}{2}\) — exactly \(e\) less, which is precisely the missing \(n=0\) term. The index never affects convergence (Choice B), and no re-indexing is needed here precisely <em>because</em> we start at \(n=0\) (Choice D).
+          </div>
+        </div>
+      </div>
+
+      <hr class="cyu-divider"/>
+
+      <!-- Q3 -->
+      <div class="cyu-question">
+        <div class="cyu-q-number">Question 3 of 4</div>
+        <div class="cyu-q-text">
+          Suppose \(e\) were replaced by an arbitrary positive constant \(c\). Which statement is true?
+        </div>
+        <div class="cyu-choices">
+          <button class="cyu-choice" data-correct="false" onclick="selectChoice(this)">
+            <span class="cyu-choice-letter">A</span>
+            <span>Convergence depends on \(c\); for sufficiently large \(c\) the series might diverge.</span>
+          </button>
+          <button class="cyu-choice" data-correct="true" onclick="selectChoice(this)">
+            <span class="cyu-choice-letter">B</span>
+            <span>The series converges for any positive \(c\) with sum \(\dfrac{3c}{2}\). The constant \(c\) scales the sum but plays no role in determining convergence.</span>
+          </button>
+          <button class="cyu-choice" data-correct="false" onclick="selectChoice(this)">
+            <span class="cyu-choice-letter">C</span>
+            <span>The series only converges when \(c &lt; 1\), since otherwise the terms don't decrease fast enough.</span>
+          </button>
+          <button class="cyu-choice" data-correct="false" onclick="selectChoice(this)">
+            <span class="cyu-choice-letter">D</span>
+            <span>Replacing \(e\) with \(c\) changes the common ratio \(r\), so the convergence behavior changes.</span>
+          </button>
+        </div>
+        <div class="cyu-check-wrap">
+          <button class="cyu-check" onclick="checkAnswer(this)">Check Answer &amp; See Explanation</button>
+        </div>
+        <div class="cyu-feedback">
+          <div class="cyu-feedback-verdict"></div>
+          <div class="cyu-explanation">
+            <strong>Explanation:</strong> Convergence of a geometric series is governed entirely by the ratio \(r\), not the leading constant. Since \(r = \frac{1}{3}\) regardless of \(c\), the series converges for any positive \(c\), and \(\sum_{n=0}^{\infty} \frac{c}{3^n} = c \cdot \frac{1}{1-1/3} = \frac{3c}{2}\). Choices A and C reflect a common confusion between the amplitude of terms and the ratio governing their decay. Choice D is wrong because \(c\) is a scalar multiplier — it cannot affect \(r = \frac{1}{3}\), which lives entirely in the exponent.
+          </div>
+        </div>
+      </div>
+
+      <hr class="cyu-divider"/>
+
+      <!-- Q4 -->
+      <div class="cyu-question">
+        <div class="cyu-q-number">Question 4 of 4</div>
+        <div class="cyu-q-text">
+          If the ratio were \(r = \dfrac{3}{2}\) instead of \(r = \dfrac{1}{3}\), what would happen?
+        </div>
+        <div class="cyu-choices">
+          <button class="cyu-choice" data-correct="false" onclick="selectChoice(this)">
+            <span class="cyu-choice-letter">A</span>
+            <span>The series would still converge, but the sum formula would give a negative result, which we'd discard.</span>
+          </button>
+          <button class="cyu-choice" data-correct="false" onclick="selectChoice(this)">
+            <span class="cyu-choice-letter">B</span>
+            <span>The formula still applies: \(S = \dfrac{a}{1 - 3/2} = -2a\), so the series converges to a negative sum.</span>
+          </button>
+          <button class="cyu-choice" data-correct="true" onclick="selectChoice(this)">
+            <span class="cyu-choice-letter">C</span>
+            <span>The series diverges. Since \(\left|\tfrac{3}{2}\right| &gt; 1\), the terms grow without bound and the series cannot converge.</span>
+          </button>
+          <button class="cyu-choice" data-correct="false" onclick="selectChoice(this)">
+            <span class="cyu-choice-letter">D</span>
+            <span>We'd need to know the value of \(a\) before determining convergence.</span>
+          </button>
+        </div>
+        <div class="cyu-check-wrap">
+          <button class="cyu-check" onclick="checkAnswer(this)">Check Answer &amp; See Explanation</button>
+        </div>
+        <div class="cyu-feedback">
+          <div class="cyu-feedback-verdict"></div>
+          <div class="cyu-explanation">
+            <strong>Explanation:</strong> The geometric series test is an if-and-only-if result: the series converges if and only if \(|r| &lt; 1\). When \(|r| &gt; 1\), successive terms grow in magnitude and the partial sums cannot settle to a finite limit — the series diverges. Choice B illustrates an important cautionary error: the formula \(\frac{a}{1-r}\) is <em>only valid when \(|r| &lt; 1\)</em>. Applying it when \(r = \frac{3}{2}\) produces \(-2a\), which is not a sum — it is a meaningless output of a formula used outside its domain. Choice D is wrong because the leading constant \(a\) never affects convergence.
+          </div>
+        </div>
+      </div>
+
+      <!-- Score summary -->
+      <div class="cyu-summary" id="cyu-p1-summary">
+        <div class="cyu-summary-score" id="cyu-p1-score"></div>
+        <div class="cyu-summary-text" id="cyu-p1-summary-text"></div>
+        <button class="cyu-retry" onclick="resetQuiz('p1')">Reset &amp; Try Again</button>
+      </div>
+
+    </div><!-- end cyu-panel -->
+  </div><!-- end problem -->
+  <a href="#top" class="back-to-top">↑ Back to top</a>
+
+
+  <!-- ══════════════════════════════════════════════════════════ -->
+  <!-- Problem 2 -->
+  <!-- ══════════════════════════════════════════════════════════ -->
+  <div class="problem" id="p2">
+    <div class="problem-header">
+      <span class="problem-num">2</span>
+      <span class="problem-title">Integral Test with Error Bounds</span>
+    </div>
+    <div class="problem-prompt">
+      Use the Integral Test to show that the series converges. Then find the bounds for its sum.
+      <div class="series-display">\[ \sum_{n=1}^{\infty} \frac{4}{n^2+1} \]</div>
+    </div>
+    <div class="solution-body">
+
+      <div class="step">
+        <div class="step-label">Verify Integral Test Hypotheses</div>
+        Let \(f(x) = \dfrac{4}{x^2+1}\). We need \(f\) to be:
+        <ul style="margin: 8px 0 8px 24px; line-height: 2;">
+          <li><strong>Positive:</strong> \(f(x) > 0\) for all \(x \geq 1\) ✓</li>
+          <li><strong>Continuous:</strong> \(f(x)\) has no discontinuities on \([1,\infty)\) ✓</li>
+          <li><strong>Decreasing:</strong> \(f'(x) = \dfrac{-8x}{(x^2+1)^2} < 0\) for \(x > 0\) ✓</li>
+        </ul>
+        The Integral Test applies.
+      </div>
+
+      <div class="step">
+        <div class="step-label">Evaluate the Improper Integral</div>
+        Because the upper limit is infinity, we must write this as a limit before evaluating:
+        <div class="math-block">
+          \[\int_1^{\infty} \frac{4}{x^2+1}\,dx = \lim_{b \to \infty}\int_1^{b} \frac{4}{x^2+1}\,dx = \lim_{b \to \infty} 4\Big[\arctan(x)\Big]_1^{b}\]
+        </div>
+        <div class="math-block">
+          \[= \lim_{b \to \infty} 4\Big[\arctan(b) - \arctan(1)\Big] = 4\left(\frac{\pi}{2} - \frac{\pi}{4}\right) = 4 \cdot \frac{\pi}{4} = \pi\]
+        </div>
+        Since the integral converges (to \(\pi\)), the series <strong>converges</strong> by the Integral Test.
+      </div>
+
+      <div class="step">
+        <div class="step-label">Establish Bounds for the Sum</div>
+        The Integral Test remainder bounds give, for the partial sum \(S_N\):
+        <div class="math-block">
+          \[ S_N + \int_{N+1}^{\infty} f(x)\,dx \;\leq\; S \;\leq\; S_N + \int_{N}^{\infty} f(x)\,dx \]
+        </div>
+        Using \(N = 1\) to bound the full series sum \(S\) directly:
+        <div class="math-block">
+          \[ \int_1^{\infty} f(x)\,dx \;\leq\; S \;\leq\; f(1) + \int_1^{\infty} f(x)\,dx \]
+        </div>
+        Computing: \(f(1) = \dfrac{4}{1+1} = 2\) and \(\displaystyle\int_1^\infty f\,dx = \pi\).
+        <div class="math-block">
+          \[ \pi \;\leq\; S \;\leq\; \pi + 2 \]
+        </div>
+      </div>
+
+      <div class="conclusion">
+        The series converges by the Integral Test. The sum \(S\) satisfies \(\pi \leq S \leq \pi + 2\).
+      </div>
+
+    </div>
+    <!-- ══════ CHECK YOUR UNDERSTANDING — P2 ══════ -->
+    <div class="cyu-toggle" onclick="toggleCYU(this)">
+      <div class="cyu-toggle-icon">+</div>
+      <span class="cyu-toggle-text">Check Your Understanding</span>
+      <span class="cyu-toggle-sub">4 questions · read the solution first</span>
+    </div>
+
+    <div class="cyu-panel" id="cyu-p2">
+      <div class="cyu-progress-bar">
+        <div class="cyu-progress-fill" id="cyu-p2-progress"></div>
+      </div>
+
+      <!-- Q1 -->
+      <div class="cyu-question">
+        <div class="cyu-q-number">Question 1 of 4</div>
+        <div class="cyu-q-text">
+          Which of the following series could <em>not</em> be tested with the Integral Test?
+        </div>
+        <div class="cyu-choices">
+          <button class="cyu-choice" data-correct="false" onclick="selectChoice(this)">
+            <span class="cyu-choice-letter">A</span>
+            <span>\(\displaystyle\sum_{n=1}^{\infty} \frac{1}{n^2+1}\)</span>
+          </button>
+          <button class="cyu-choice" data-correct="true" onclick="selectChoice(this)">
+            <span class="cyu-choice-letter">B</span>
+            <span>\(\displaystyle\sum_{n=1}^{\infty} \frac{(-1)^n}{n}\)</span>
+          </button>
+          <button class="cyu-choice" data-correct="false" onclick="selectChoice(this)">
+            <span class="cyu-choice-letter">C</span>
+            <span>\(\displaystyle\sum_{n=2}^{\infty} \frac{1}{n \ln n}\)</span>
+          </button>
+          <button class="cyu-choice" data-correct="false" onclick="selectChoice(this)">
+            <span class="cyu-choice-letter">D</span>
+            <span>\(\displaystyle\sum_{n=1}^{\infty} \frac{4}{n^2+1}\)</span>
+          </button>
+        </div>
+        <div class="cyu-check-wrap">
+          <button class="cyu-check" onclick="checkAnswer(this)">Check Answer &amp; See Explanation</button>
+        </div>
+        <div class="cyu-feedback">
+          <div class="cyu-feedback-verdict"></div>
+          <div class="cyu-explanation">
+            <strong>Explanation:</strong> The Integral Test requires the corresponding function \(f(x)\) to be <em>positive</em>, <em>continuous</em>, and <em>decreasing</em> on \([N, \infty)\) for some \(N\). The series in choice B, \(\sum \frac{(-1)^n}{n}\), is alternating — its terms are not all positive, so the positivity condition fails immediately. Choices A, C, and D all have positive, continuous, decreasing terms and are valid candidates for the Integral Test.
+          </div>
+        </div>
+      </div>
+
+      <hr class="cyu-divider"/>
+
+      <!-- Q2 -->
+      <div class="cyu-question">
+        <div class="cyu-q-number">Question 2 of 4</div>
+        <div class="cyu-q-text">
+          We showed that \(\displaystyle\int_1^{\infty} \frac{4}{x^2+1}\,dx = \pi\). What can we conclude from this?
+        </div>
+        <div class="cyu-choices">
+          <button class="cyu-choice" data-correct="false" onclick="selectChoice(this)">
+            <span class="cyu-choice-letter">A</span>
+            <span>The sum of the series equals \(\pi\).</span>
+          </button>
+          <button class="cyu-choice" data-correct="true" onclick="selectChoice(this)">
+            <span class="cyu-choice-letter">B</span>
+            <span>The series converges, but its sum is not \(\pi\). The integral value tells us about convergence, not the value of the sum.</span>
+          </button>
+          <button class="cyu-choice" data-correct="false" onclick="selectChoice(this)">
+            <span class="cyu-choice-letter">C</span>
+            <span>The partial sums \(S_N\) approach \(\pi\) as \(N \to \infty\).</span>
+          </button>
+          <button class="cyu-choice" data-correct="false" onclick="selectChoice(this)">
+            <span class="cyu-choice-letter">D</span>
+            <span>The series converges and its sum is less than \(\pi\).</span>
+          </button>
+        </div>
+        <div class="cyu-check-wrap">
+          <button class="cyu-check" onclick="checkAnswer(this)">Check Answer &amp; See Explanation</button>
+        </div>
+        <div class="cyu-feedback">
+          <div class="cyu-feedback-verdict"></div>
+          <div class="cyu-explanation">
+            <strong>Explanation:</strong> The Integral Test is a <em>convergence test</em> — it tells you <em>whether</em> a series converges or diverges, not <em>what</em> the series sums to. The value \(\pi\) is the value of the <em>integral</em>, which is a continuous area calculation. The series is a discrete sum of infinitely many terms, and its value is a different (generally unknown) number. This is one of the most common misconceptions with the Integral Test. Choice D is also incorrect: the solution shows \(\pi \leq S \leq \pi + 2\), so \(S\) is actually <em>at least</em> \(\pi\), not less than it.
+          </div>
+        </div>
+      </div>
+
+      <hr class="cyu-divider"/>
+
+      <!-- Q3 -->
+      <div class="cyu-question">
+        <div class="cyu-q-number">Question 3 of 4</div>
+        <div class="cyu-q-text">
+          The solution verifies that \(f'(x) = \dfrac{-8x}{(x^2+1)^2} &lt; 0\) for \(x &gt; 0\). Which Integral Test condition does this confirm?
+        </div>
+        <div class="cyu-choices">
+          <button class="cyu-choice" data-correct="false" onclick="selectChoice(this)">
+            <span class="cyu-choice-letter">A</span>
+            <span>That \(f(x)\) is positive on \([1, \infty)\).</span>
+          </button>
+          <button class="cyu-choice" data-correct="false" onclick="selectChoice(this)">
+            <span class="cyu-choice-letter">B</span>
+            <span>That \(f(x)\) is continuous on \([1, \infty)\).</span>
+          </button>
+          <button class="cyu-choice" data-correct="true" onclick="selectChoice(this)">
+            <span class="cyu-choice-letter">C</span>
+            <span>That \(f(x)\) is decreasing on \([1, \infty)\).</span>
+          </button>
+          <button class="cyu-choice" data-correct="false" onclick="selectChoice(this)">
+            <span class="cyu-choice-letter">D</span>
+            <span>That the improper integral converges.</span>
+          </button>
+        </div>
+        <div class="cyu-check-wrap">
+          <button class="cyu-check" onclick="checkAnswer(this)">Check Answer &amp; See Explanation</button>
+        </div>
+        <div class="cyu-feedback">
+          <div class="cyu-feedback-verdict"></div>
+          <div class="cyu-explanation">
+            <strong>Explanation:</strong> A negative derivative means the function is decreasing — so \(f'(x) &lt; 0\) confirms the <em>decreasing</em> condition. The three required conditions for the Integral Test are positivity (\(f(x) &gt; 0\)), continuity, and decreasing behavior. Each needs to be verified separately. Knowing that \(f'(x) &lt; 0\) tells us nothing directly about whether \(f\) is positive or whether the integral converges — those require separate arguments.
+          </div>
+        </div>
+      </div>
+
+      <hr class="cyu-divider"/>
+
+      <!-- Q4 -->
+      <div class="cyu-question">
+        <div class="cyu-q-number">Question 4 of 4</div>
+        <div class="cyu-q-text">
+          The solution concludes \(\pi \leq S \leq \pi + 2\). Where does the \(+2\) come from?
+        </div>
+        <div class="cyu-choices">
+          <button class="cyu-choice" data-correct="false" onclick="selectChoice(this)">
+            <span class="cyu-choice-letter">A</span>
+            <span>It is the value of the improper integral evaluated at the lower limit \(x = 1\).</span>
+          </button>
+          <button class="cyu-choice" data-correct="true" onclick="selectChoice(this)">
+            <span class="cyu-choice-letter">B</span>
+            <span>It is \(f(1) = \dfrac{4}{1^2 + 1} = 2\), the value of the first term of the series.</span>
+          </button>
+          <button class="cyu-choice" data-correct="false" onclick="selectChoice(this)">
+            <span class="cyu-choice-letter">C</span>
+            <span>It is an arbitrary tolerance chosen to make the bound a round number.</span>
+          </button>
+          <button class="cyu-choice" data-correct="false" onclick="selectChoice(this)">
+            <span class="cyu-choice-letter">D</span>
+            <span>It comes from evaluating \(\arctan(x)\) at the upper limit of integration.</span>
+          </button>
+        </div>
+        <div class="cyu-check-wrap">
+          <button class="cyu-check" onclick="checkAnswer(this)">Check Answer &amp; See Explanation</button>
+        </div>
+        <div class="cyu-feedback">
+          <div class="cyu-feedback-verdict"></div>
+          <div class="cyu-explanation">
+            <strong>Explanation:</strong> The upper bound \(S \leq f(1) + \int_1^{\infty} f(x)\,dx\) comes directly from the Integral Test remainder inequality. The first term \(f(1) = \frac{4}{1^2+1} = \frac{4}{2} = 2\) acts as the "extra" amount above the integral. Geometrically, the integral underestimates the series (the curve sits below the rectangular bars for a decreasing function), so the series sum cannot exceed the integral plus that first rectangular piece of width 1 and height \(f(1)\).
+          </div>
+        </div>
+      </div>
+
+      <!-- Score summary -->
+      <div class="cyu-summary" id="cyu-p2-summary">
+        <div class="cyu-summary-score" id="cyu-p2-score"></div>
+        <div class="cyu-summary-text" id="cyu-p2-summary-text"></div>
+        <button class="cyu-retry" onclick="resetQuiz('p2')">Reset &amp; Try Again</button>
+      </div>
+
+    </div><!-- end cyu-panel -->
+  </div><!-- end problem -->
+  <a href="#top" class="back-to-top">↑ Back to top</a>
+
+
+  <!-- ══════════════════════════════════════════════════════════ -->
+  <!-- Problem 3 -->
+  <!-- ══════════════════════════════════════════════════════════ -->
+  <div class="problem" id="p3">
+    <div class="problem-header">
+      <span class="problem-num">3</span>
+      <span class="problem-title">Comparison Test</span>
+    </div>
+    <div class="problem-prompt">
+      Use a comparison test to determine whether the series converges or diverges.
+      <div class="series-display">\[ \sum_{n=1}^{\infty} \frac{4}{n \cdot 3^n} \]</div>
+    </div>
+    <div class="solution-body">
+
+      <div class="step">
+        <div class="step-label">Choose a Comparison Series</div>
+        Observe that \(n \cdot 3^n > 3^n\) for all \(n \geq 1\), so:
+        <div class="math-block">
+          \[ \frac{4}{n \cdot 3^n} < \frac{4}{3^n} = 4\left(\frac{1}{3}\right)^n \]
+        </div>
+        The comparison series \(\displaystyle\sum_{n=1}^{\infty} 4\left(\dfrac{1}{3}\right)^n\) is a geometric series with \(r = \dfrac{1}{3} < 1\), so it <strong>converges</strong>.
+      </div>
+
+      <div class="step">
+        <div class="step-label">Apply the Direct Comparison Test</div>
+        Since:
+        <ul style="margin: 8px 0 8px 24px; line-height: 2;">
+          <li>\(0 < \dfrac{4}{n\cdot 3^n} < \dfrac{4}{3^n}\) for all \(n \geq 1\)</li>
+          <li>\(\displaystyle\sum_{n=1}^{\infty} \frac{4}{3^n}\) converges</li>
+        </ul>
+        By the Direct Comparison Test, our series <strong>converges</strong>.
+      </div>
+
+      <div class="conclusion">
+        The series \(\displaystyle\sum_{n=1}^{\infty} \dfrac{4}{n \cdot 3^n}\) converges by the Direct Comparison Test.
+      </div>
+
+      <div class="note">
+        Alternative: The Limit Comparison Test with \(b_n = \left(\tfrac{1}{3}\right)^n\) also works cleanly, yielding \(\lim\limits_{n\to\infty} \frac{a_n}{b_n} = \lim\limits_{n\to\infty} \frac{4}{n} = 0\). Since \(0 \leq L < \infty\) and \(\sum b_n\) converges, \(\sum a_n\) also converges.
+      </div>
+
+    </div>
+
+    <!-- ══════ CHECK YOUR UNDERSTANDING — P3 ══════ -->
+    <div class="cyu-toggle" onclick="toggleCYU(this)">
+      <div class="cyu-toggle-icon">+</div>
+      <span class="cyu-toggle-text">Check Your Understanding</span>
+      <span class="cyu-toggle-sub">4 questions · read the solution first</span>
+    </div>
+
+    <div class="cyu-panel" id="cyu-p3">
+      <div class="cyu-progress-bar">
+        <div class="cyu-progress-fill" id="cyu-p3-progress"></div>
+      </div>
+
+      <!-- Q1 -->
+      <div class="cyu-question">
+        <div class="cyu-q-number">Question 1 of 4</div>
+        <div class="cyu-q-text">
+          As \(n \to \infty\), which statement best describes the difference in behavior between \(\dfrac{1}{n}\) and \(\dfrac{1}{3^n}\)?
+        </div>
+        <div class="cyu-choices">
+          <button class="cyu-choice" data-correct="false" onclick="selectChoice(this)">
+            <span class="cyu-choice-letter">A</span>
+            <span>Both decrease toward zero at roughly the same rate, so they are interchangeable as comparison series.</span>
+          </button>
+          <button class="cyu-choice" data-correct="false" onclick="selectChoice(this)">
+            <span class="cyu-choice-letter">B</span>
+            <span>\(\dfrac{1}{n}\) decreases faster than \(\dfrac{1}{3^n}\) because division by a larger quantity makes it smaller sooner.</span>
+          </button>
+          <button class="cyu-choice" data-correct="true" onclick="selectChoice(this)">
+            <span class="cyu-choice-letter">C</span>
+            <span>\(\dfrac{1}{3^n}\) shrinks far faster — exponential decay dominates polynomial decay — so \(\dfrac{1}{3^n}\) is negligibly small compared to \(\dfrac{1}{n}\) for large \(n\).</span>
+          </button>
+          <button class="cyu-choice" data-correct="false" onclick="selectChoice(this)">
+            <span class="cyu-choice-letter">D</span>
+            <span>The two expressions are equal when \(n = 3\), so their long-run behavior is the same.</span>
+          </button>
+        </div>
+        <div class="cyu-check-wrap">
+          <button class="cyu-check" onclick="checkAnswer(this)">Check Answer &amp; See Explanation</button>
+        </div>
+        <div class="cyu-feedback">
+          <div class="cyu-feedback-verdict"></div>
+          <div class="cyu-explanation">
+            <strong>Explanation:</strong> \(\dfrac{1}{n}\) is a power function — its denominator grows linearly. \(\dfrac{1}{3^n}\) is an exponential function — its denominator grows without bound at an accelerating rate. For any fixed base \(b > 1\), we have \(b^n \gg n^k\) for all powers \(k\) as \(n \to \infty\). Concretely: at \(n = 10\), \(\frac{1}{n} = 0.1\) while \(\frac{1}{3^{10}} \approx 0.0000017\). These are fundamentally different functions — they cannot be treated as equivalent for comparison purposes.
+          </div>
+        </div>
+      </div>
+
+      <hr class="cyu-divider"/>
+
+      <!-- Q2 -->
+      <div class="cyu-question">
+        <div class="cyu-q-number">Question 2 of 4</div>
+        <div class="cyu-q-text">
+          A student argues: "Since \(\dfrac{4}{n \cdot 3^n} &lt; \dfrac{1}{n}\) for all \(n \geq 1\), and \(\displaystyle\sum \dfrac{1}{n}\) is the harmonic series, I can use it as my comparison." What is wrong with this reasoning?
+        </div>
+        <div class="cyu-choices">
+          <button class="cyu-choice" data-correct="false" onclick="selectChoice(this)">
+            <span class="cyu-choice-letter">A</span>
+            <span>The inequality \(\dfrac{4}{n \cdot 3^n} &lt; \dfrac{1}{n}\) is actually false, so the comparison is invalid from the start.</span>
+          </button>
+          <button class="cyu-choice" data-correct="false" onclick="selectChoice(this)">
+            <span class="cyu-choice-letter">B</span>
+            <span>The harmonic series cannot be used in any comparison test.</span>
+          </button>
+          <button class="cyu-choice" data-correct="true" onclick="selectChoice(this)">
+            <span class="cyu-choice-letter">C</span>
+            <span>The inequality is true, but it points in the wrong direction. To conclude convergence, you need \(a_n \leq b_n\) where \(\sum b_n\) <em>converges</em>. Since \(\sum \frac{1}{n}\) diverges, a smaller series could still converge or diverge — no conclusion is possible.</span>
+          </button>
+          <button class="cyu-choice" data-correct="false" onclick="selectChoice(this)">
+            <span class="cyu-choice-letter">D</span>
+            <span>The student should use \(\dfrac{4}{n}\) rather than \(\dfrac{1}{n}\) to make the constant match.</span>
+          </button>
+        </div>
+        <div class="cyu-check-wrap">
+          <button class="cyu-check" onclick="checkAnswer(this)">Check Answer &amp; See Explanation</button>
+        </div>
+        <div class="cyu-feedback">
+          <div class="cyu-feedback-verdict"></div>
+          <div class="cyu-explanation">
+            <strong>Explanation:</strong> The inequality \(\frac{4}{n \cdot 3^n} &lt; \frac{1}{n}\) is indeed true (since \(4 &lt; 3^n\) for \(n \geq 2\), and the denominator \(n \cdot 3^n\) is larger than \(n\)). But the Direct Comparison Test for convergence requires the <em>upper</em> bound series to converge. Knowing a series is smaller than a divergent series is useless — zero is smaller than the harmonic series too, and zero converges; \(\sum \frac{1}{n^2}\) is also smaller than the harmonic series, and it converges. Being below a divergent series tells you nothing. The test only flows one way: smaller than convergent \(\Rightarrow\) converges; larger than divergent \(\Rightarrow\) diverges.
+          </div>
+        </div>
+      </div>
+
+      <hr class="cyu-divider"/>
+
+      <!-- Q3 -->
+      <div class="cyu-question">
+        <div class="cyu-q-number">Question 3 of 4</div>
+        <div class="cyu-q-text">
+          Which series makes the most useful upper bound for \(\displaystyle\sum_{n=1}^{\infty} \frac{4}{n \cdot 3^n}\), and why?
+        </div>
+        <div class="cyu-choices">
+          <button class="cyu-choice" data-correct="false" onclick="selectChoice(this)">
+            <span class="cyu-choice-letter">A</span>
+            <span>\(\displaystyle\sum_{n=1}^{\infty} \frac{1}{n}\) — the harmonic series is a well-known benchmark.</span>
+          </button>
+          <button class="cyu-choice" data-correct="false" onclick="selectChoice(this)">
+            <span class="cyu-choice-letter">B</span>
+            <span>\(\displaystyle\sum_{n=1}^{\infty} \frac{1}{n^2}\) — it's a convergent \(p\)-series and every \(p\)-series dominates an exponential.</span>
+          </button>
+          <button class="cyu-choice" data-correct="true" onclick="selectChoice(this)">
+            <span class="cyu-choice-letter">C</span>
+            <span>\(\displaystyle\sum_{n=1}^{\infty} \frac{4}{3^n}\) — dropping the factor of \(n\) from the denominator increases each term, giving a valid upper bound that is also a convergent geometric series.</span>
+          </button>
+          <button class="cyu-choice" data-correct="false" onclick="selectChoice(this)">
+            <span class="cyu-choice-letter">D</span>
+            <span>\(\displaystyle\sum_{n=1}^{\infty} \frac{4}{n}\) — scaling the harmonic series by 4 is sufficient to account for the numerator.</span>
+          </button>
+        </div>
+        <div class="cyu-check-wrap">
+          <button class="cyu-check" onclick="checkAnswer(this)">Check Answer &amp; See Explanation</button>
+        </div>
+        <div class="cyu-feedback">
+          <div class="cyu-feedback-verdict"></div>
+          <div class="cyu-explanation">
+            <strong>Explanation:</strong> The key move is dropping the \(n\) from the denominator: since \(n \geq 1\), we have \(n \cdot 3^n \geq 3^n\), so \(\frac{4}{n \cdot 3^n} \leq \frac{4}{3^n}\). This gives a valid term-by-term upper bound. The resulting series \(\sum \frac{4}{3^n}\) is geometric with ratio \(r = \frac{1}{3} &lt; 1\), so it converges — exactly what the Direct Comparison Test requires. Choice B is incorrect: \(\frac{1}{n^2}\) does <em>not</em> dominate \(\frac{4}{n \cdot 3^n}\) for all \(n\) — in fact \(\frac{4}{n \cdot 3^n} &lt; \frac{1}{n^2}\) is not guaranteed — and in any case a \(p\)-series does not generally dominate an exponential term. Choice D fails because \(\sum \frac{4}{n}\) diverges.
+          </div>
+        </div>
+      </div>
+
+      <hr class="cyu-divider"/>
+
+      <!-- Q4 -->
+      <div class="cyu-question">
+        <div class="cyu-q-number">Question 4 of 4</div>
+        <div class="cyu-q-text">
+          Which of the following correctly sets up the Direct Comparison Test to conclude that \(\displaystyle\sum_{n=1}^{\infty} \frac{4}{n \cdot 3^n}\) converges?
+        </div>
+        <div class="cyu-choices">
+          <button class="cyu-choice" data-correct="false" onclick="selectChoice(this)">
+            <span class="cyu-choice-letter">A</span>
+            <span>\(0 &lt; \dfrac{1}{n} \leq \dfrac{4}{n \cdot 3^n}\) for all \(n \geq 1\), and \(\displaystyle\sum \frac{1}{n}\) diverges.</span>
+          </button>
+          <button class="cyu-choice" data-correct="false" onclick="selectChoice(this)">
+            <span class="cyu-choice-letter">B</span>
+            <span>\(0 &lt; \dfrac{4}{n \cdot 3^n} \leq \dfrac{1}{n}\) for all \(n \geq 1\), and \(\displaystyle\sum \frac{1}{n}\) diverges.</span>
+          </button>
+          <button class="cyu-choice" data-correct="true" onclick="selectChoice(this)">
+            <span class="cyu-choice-letter">C</span>
+            <span>\(0 &lt; \dfrac{4}{n \cdot 3^n} \leq \dfrac{4}{3^n}\) for all \(n \geq 1\), and \(\displaystyle\sum \frac{4}{3^n}\) converges.</span>
+          </button>
+          <button class="cyu-choice" data-correct="false" onclick="selectChoice(this)">
+            <span class="cyu-choice-letter">D</span>
+            <span>\(0 &lt; \dfrac{4}{3^n} \leq \dfrac{4}{n \cdot 3^n}\) for all \(n \geq 1\), and \(\displaystyle\sum \frac{4}{3^n}\) converges.</span>
+          </button>
+        </div>
+        <div class="cyu-check-wrap">
+          <button class="cyu-check" onclick="checkAnswer(this)">Check Answer &amp; See Explanation</button>
+        </div>
+        <div class="cyu-feedback">
+          <div class="cyu-feedback-verdict"></div>
+          <div class="cyu-explanation">
+            <strong>Explanation:</strong> The Direct Comparison Test for convergence requires two things stated together: (1) \(0 &lt; a_n \leq b_n\) for all \(n\), and (2) \(\sum b_n\) converges. Only choice C satisfies both. Choice A has the inequality backwards — it claims \(\frac{1}{n} \leq \frac{4}{n \cdot 3^n}\), which is false. Choice B has the right inequality but pairs it with a divergent upper bound, giving no conclusion. Choice D has the inequality reversed (\(\frac{4}{3^n} \leq \frac{4}{n \cdot 3^n}\) is false since \(n \geq 1\) means the left side is actually larger) — this would set up a divergence argument if \(\sum \frac{4}{3^n}\) diverged, but it doesn't, so it's doubly wrong.
+          </div>
+        </div>
+      </div>
+
+      <!-- Score summary -->
+      <div class="cyu-summary" id="cyu-p3-summary">
+        <div class="cyu-summary-score" id="cyu-p3-score"></div>
+        <div class="cyu-summary-text" id="cyu-p3-summary-text"></div>
+        <button class="cyu-retry" onclick="resetQuiz('p3')">Reset &amp; Try Again</button>
+      </div>
+
+    </div><!-- end cyu-panel -->
+  </div><!-- end problem -->
+  <a href="#top" class="back-to-top">↑ Back to top</a>
+
+
+  <!-- ══════════════════════════════════════════════════════════ -->
+  <!-- Problem 4 -->
+  <!-- ══════════════════════════════════════════════════════════ -->
+  <div class="problem" id="p4">
+    <div class="problem-header">
+      <span class="problem-num">4</span>
+      <span class="problem-title">Alternating Series Test</span>
+    </div>
+    <div class="problem-prompt">
+      Determine whether the alternating series converges or diverges.
+      <div class="series-display">\[ \sum_{n=2}^{\infty} (-1)^{n+1}\frac{n+2}{n(n+1)} \]</div>
+    </div>
+    <div class="solution-body">
+
+      <div class="step">
+        <div class="step-label">Write in Standard Alternating Form</div>
+        Let \(b_n = \dfrac{n+2}{n(n+1)}\). The series is \(\displaystyle\sum_{n=2}^{\infty}(-1)^{n+1}b_n\).
+        The Alternating Series Test (Leibniz's Test) requires:
+        <ol style="margin: 8px 0 8px 24px; line-height: 2;">
+          <li>\(b_n > 0\) for all \(n\)</li>
+          <li>\(b_n\) is eventually decreasing: \(b_{n+1} \leq b_n\)</li>
+          <li>\(\displaystyle\lim_{n\to\infty} b_n = 0\)</li>
+        </ol>
+      </div>
+
+      <div class="step">
+        <div class="step-label">Condition 1 — Positivity</div>
+        For \(n \geq 2\), numerator \(n+2 > 0\) and denominator \(n(n+1) > 0\), so \(b_n > 0\). ✓
+      </div>
+
+      <div class="step">
+        <div class="step-label">Condition 3 — Limit Zero</div>
+        <div class="math-block">
+          \[ \lim_{n\to\infty} \frac{n+2}{n(n+1)} = \lim_{n\to\infty} \frac{n+2}{n^2+n} = 0 \quad \checkmark \]
+        </div>
+        (The numerator is degree 1, denominator degree 2.)
+      </div>
+
+      <div class="step">
+        <div class="step-label">Condition 2 — Decreasing</div>
+        We can use the continuous analogue: let \(f(x) = \dfrac{x+2}{x(x+1)} = \dfrac{x+2}{x^2+x}\).
+        <div class="math-block">
+          \[ f'(x) = \frac{(x^2+x) - (x+2)(2x+1)}{(x^2+x)^2} = \frac{-x^2 - 4x - 2}{(x^2+x)^2} \]
+        </div>
+        The numerator \(-x^2 - 4x - 2 < 0\) for \(x > 0\), so \(f'(x) < 0\). Thus \(b_n\) is decreasing. ✓
+      </div>
+
+      <div class="conclusion">
+        All three conditions of the Alternating Series Test are satisfied. The series <strong>converges</strong>.
+      </div>
+
+    </div>
+  </div>
+  <a href="#top" class="back-to-top">↑ Back to top</a>
+
+
+  <!-- ══════════════════════════════════════════════════════════ -->
+  <!-- Problem 5 -->
+  <!-- ══════════════════════════════════════════════════════════ -->
+  <div class="problem" id="p5">
+    <div class="problem-header">
+      <span class="problem-num">5</span>
+      <span class="problem-title">Absolute vs. Conditional Convergence</span>
+    </div>
+    <div class="problem-prompt">
+      Determine whether the series converges absolutely, converges conditionally, or diverges.
+      <div class="series-display">\[ \sum_{n=2}^{\infty} \frac{(-1)^{n+1}}{\sqrt{n}} \]</div>
+    </div>
+    <div class="solution-body">
+
+      <div class="step">
+        <div class="step-label">Test for Absolute Convergence</div>
+        Consider the series of absolute values:
+        <div class="math-block">
+          \[ \sum_{n=2}^{\infty} \left|\frac{(-1)^{n+1}}{\sqrt{n}}\right| = \sum_{n=2}^{\infty} \frac{1}{\sqrt{n}} = \sum_{n=2}^{\infty} \frac{1}{n^{1/2}} \]
+        </div>
+        This is a \(p\)-series with \(p = \dfrac{1}{2} \leq 1\), so it <strong>diverges</strong>.
+        The original series does <em>not</em> converge absolutely.
+      </div>
+
+      <div class="step">
+        <div class="step-label">Test for Conditional Convergence (Alternating Series Test)</div>
+        Let \(b_n = \dfrac{1}{\sqrt{n}}\). Check:
+        <ul style="margin: 8px 0 8px 24px; line-height: 2;">
+          <li>\(b_n = \dfrac{1}{\sqrt{n}} > 0\) ✓</li>
+          <li>\(b_{n+1} = \dfrac{1}{\sqrt{n+1}} < \dfrac{1}{\sqrt{n}} = b_n\) — decreasing ✓</li>
+          <li>\(\displaystyle\lim_{n\to\infty} \frac{1}{\sqrt{n}} = 0\) ✓</li>
+        </ul>
+        By the Alternating Series Test, the series <strong>converges</strong>.
+      </div>
+
+      <div class="conclusion">
+        The series converges <strong>conditionally</strong> (converges, but not absolutely).
+      </div>
+
+    </div>
+  </div>
+  <a href="#top" class="back-to-top">↑ Back to top</a>
+
+
+  <!-- ══════════════════════════════════════════════════════════ -->
+  <!-- Problem 6 -->
+  <!-- ══════════════════════════════════════════════════════════ -->
+  <div class="problem" id="p6">
+    <div class="problem-header">
+      <span class="problem-num">6</span>
+      <span class="problem-title">Ratio Test</span>
+    </div>
+    <div class="problem-prompt">
+      Use the Ratio Test to determine whether the series converges or diverges.
+      <div class="series-display">\[ \sum_{n=2}^{\infty} \frac{2^n}{n!} \]</div>
+    </div>
+    <div class="solution-body">
+
+      <div class="step">
+        <div class="step-label">Set Up the Ratio</div>
+        Let \(a_n = \dfrac{2^n}{n!}\). Compute \(\displaystyle L = \lim_{n\to\infty}\left|\frac{a_{n+1}}{a_n}\right|\):
+        <div class="math-block">
+          \[ \frac{a_{n+1}}{a_n} = \frac{2^{n+1}}{(n+1)!} \cdot \frac{n!}{2^n} = \frac{2^{n+1}}{2^n} \cdot \frac{n!}{(n+1)!} = 2 \cdot \frac{1}{n+1} = \frac{2}{n+1} \]
+        </div>
+      </div>
+
+      <div class="step">
+        <div class="step-label">Evaluate the Limit</div>
+        <div class="math-block">
+          \[ L = \lim_{n\to\infty} \frac{2}{n+1} = 0 \]
+        </div>
+      </div>
+
+      <div class="step">
+        <div class="step-label">Apply the Ratio Test</div>
+        Since \(L = 0 < 1\), the series <strong>converges absolutely</strong> by the Ratio Test.
+      </div>
+
+      <div class="conclusion">
+        The series \(\displaystyle\sum_{n=2}^{\infty} \dfrac{2^n}{n!}\) <strong>converges</strong> by the Ratio Test (\(L = 0 < 1\)).
+      </div>
+
+      <div class="note">
+        This sum is related to \(e^2\): \(\displaystyle\sum_{n=0}^{\infty}\frac{2^n}{n!} = e^2\), so our sum equals \(e^2 - 1 - 2 = e^2 - 3\).
+      </div>
+
+    </div>
+  </div>
+  <a href="#top" class="back-to-top">↑ Back to top</a>
+
+
+  <!-- ══════════════════════════════════════════════════════════ -->
+  <!-- Problem 7 -->
+  <!-- ══════════════════════════════════════════════════════════ -->
+  <div class="problem" id="p7">
+    <div class="problem-header">
+      <span class="problem-num">7</span>
+      <span class="problem-title">Root Test</span>
+    </div>
+    <div class="problem-prompt">
+      Use the Root Test to determine whether the series converges or diverges.
+      <div class="series-display">\[ \sum_{n=2}^{\infty} \left(\frac{2n}{n+3}\right)^{n+1} \]</div>
+    </div>
+    <div class="solution-body">
+
+      <div class="step">
+        <div class="step-label">Set Up the Root Test</div>
+        Let \(a_n = \left(\dfrac{2n}{n+3}\right)^{n+1}\). Compute \(L = \displaystyle\lim_{n\to\infty}\sqrt[n]{|a_n|} = \lim_{n\to\infty}|a_n|^{1/n}\):
+        <div class="math-block">
+          \[ |a_n|^{1/n} = \left[\left(\frac{2n}{n+3}\right)^{n+1}\right]^{1/n} = \left(\frac{2n}{n+3}\right)^{\frac{n+1}{n}} \]
+        </div>
+      </div>
+
+      <div class="step">
+        <div class="step-label">Evaluate the Limit</div>
+        As \(n \to \infty\), the exponent \(\dfrac{n+1}{n} \to 1\), and:
+        <div class="math-block">
+          \[ \frac{2n}{n+3} = \frac{2}{1 + \frac{3}{n}} \to 2 \]
+        </div>
+        Therefore:
+        <div class="math-block">
+          \[ L = \lim_{n\to\infty}\left(\frac{2n}{n+3}\right)^{\frac{n+1}{n}} = 2^1 = 2 \]
+        </div>
+      </div>
+
+      <div class="step">
+        <div class="step-label">Apply the Root Test</div>
+        Since \(L = 2 > 1\), the series <strong>diverges</strong> by the Root Test.
+      </div>
+
+      <div class="conclusion">
+        The series diverges by the Root Test (\(L = 2 > 1\)).
+      </div>
+
+      <div class="note">
+        We can also confirm divergence by noting that \(a_n \to \infty\) as \(n\to\infty\) (the terms do not approach zero), which alone implies divergence by the Divergence Test.
+      </div>
+
+    </div>
+  </div>
+  <a href="#top" class="back-to-top">↑ Back to top</a>
+
+
+  <!-- ══════════════════════════════════════════════════════════ -->
+  <!-- Problem 8 -->
+  <!-- ══════════════════════════════════════════════════════════ -->
+  <div class="problem" id="p8">
+    <div class="problem-header">
+      <span class="problem-num">8</span>
+      <span class="problem-title">Radius &amp; Interval of Convergence</span>
+    </div>
+    <div class="problem-prompt">
+      Find the radius and interval of convergence of the power series.
+      <div class="series-display">\[ \sum_{n=2}^{\infty} \frac{(x-3)^{2n-1}}{n^2} \]</div>
+    </div>
+    <div class="solution-body">
+
+      <div class="step">
+        <div class="step-label">Apply the Ratio Test to Find the Radius</div>
+        Let \(a_n = \dfrac{(x-3)^{2n-1}}{n^2}\). Compute \(\left|\dfrac{a_{n+1}}{a_n}\right|\):
+        <div class="math-block">
+          \[ \left|\frac{a_{n+1}}{a_n}\right| = \left|\frac{(x-3)^{2n+1}}{(n+1)^2}\cdot\frac{n^2}{(x-3)^{2n-1}}\right| = (x-3)^2\cdot\frac{n^2}{(n+1)^2} \]
+        </div>
+        <div class="math-block">
+          \[ L = \lim_{n\to\infty}(x-3)^2\cdot\left(\frac{n}{n+1}\right)^2 = (x-3)^2 \cdot 1 = (x-3)^2 \]
+        </div>
+        Convergence requires \(L < 1\):
+        <div class="math-block">
+          \[ (x-3)^2 < 1 \implies |x-3| < 1 \]
+        </div>
+        The <strong>radius of convergence</strong> is \(R = 1\).
+      </div>
+
+      <div class="step">
+        <div class="step-label">Check the Endpoints</div>
+        The series is centered at \(x = 3\) with radius 1, so check \(x = 2\) and \(x = 4\).
+
+        <p style="margin-top: 12px;"><strong>At \(x = 2\):</strong> \((x-3) = -1\), so \((x-3)^{2n-1} = (-1)^{2n-1} = -1\).</p>
+        <div class="math-block">
+          \[ \sum_{n=2}^{\infty} \frac{-1}{n^2} = -\sum_{n=2}^{\infty}\frac{1}{n^2} \]
+        </div>
+        This is \((-1)\) times a convergent \(p\)-series (\(p=2>1\)). <strong>Converges.</strong>
+
+        <p style="margin-top: 12px;"><strong>At \(x = 4\):</strong> \((x-3) = 1\), so \((x-3)^{2n-1} = 1\).</p>
+        <div class="math-block">
+          \[ \sum_{n=2}^{\infty}\frac{1}{n^2} \]
+        </div>
+        A convergent \(p\)-series (\(p=2>1\)). <strong>Converges.</strong>
+      </div>
+
+      <div class="conclusion">
+        Radius of convergence: \(R = 1\). <br/>
+        Interval of convergence: \([2,\, 4]\) (both endpoints included).
+      </div>
+
+    </div>
+  </div>
+  <a href="#top" class="back-to-top">↑ Back to top</a>
+
+
+  <!-- ══════════════════════════════════════════════════════════ -->
+  <!-- Problem 9 -->
+  <!-- ══════════════════════════════════════════════════════════ -->
+  <div class="problem" id="p9">
+    <div class="problem-header">
+      <span class="problem-num">9</span>
+      <span class="problem-title">Power Series Representation — Geometric</span>
+    </div>
+    <div class="problem-prompt">
+      Express the function as a power series centered at zero. State the domain, radius, and interval of convergence.
+      <div class="series-display">\[ f(x) = \frac{1}{1-3x} \]</div>
+    </div>
+    <div class="solution-body">
+
+      <div class="step">
+        <div class="step-label">Use the Geometric Series Formula</div>
+        Recall \(\displaystyle\frac{1}{1-u} = \sum_{n=0}^{\infty} u^n\) for \(|u| < 1\).
+        Substitute \(u = 3x\):
+        <div class="math-block">
+          \[ \frac{1}{1-3x} = \sum_{n=0}^{\infty}(3x)^n = \sum_{n=0}^{\infty} 3^n x^n \]
+        </div>
+      </div>
+
+      <div class="step">
+        <div class="step-label">Determine Radius and Interval of Convergence</div>
+        Convergence requires \(|3x| < 1\), i.e., \(|x| < \dfrac{1}{3}\).
+
+        <p style="margin-top: 10px;"><strong>At \(x = \tfrac{1}{3}\):</strong> \(\displaystyle\sum 3^n\cdot\tfrac{1}{3^n} = \sum 1\) — <em>diverges</em>.</p>
+        <p style="margin-top: 6px;"><strong>At \(x = -\tfrac{1}{3}\):</strong> \(\displaystyle\sum (-1)^n\) — <em>diverges</em>.</p>
+      </div>
+
+      <div class="conclusion">
+        \[ \frac{1}{1-3x} = \sum_{n=0}^{\infty} 3^n x^n \]
+        Radius of convergence: \(R = \dfrac{1}{3}\). &nbsp; Interval of convergence: \(\left(-\dfrac{1}{3},\, \dfrac{1}{3}\right)\).
+      </div>
+
+    </div>
+  </div>
+  <a href="#top" class="back-to-top">↑ Back to top</a>
+
+
+  <!-- ══════════════════════════════════════════════════════════ -->
+  <!-- Problem 10 -->
+  <!-- ══════════════════════════════════════════════════════════ -->
+  <div class="problem" id="p10">
+    <div class="problem-header">
+      <span class="problem-num">10</span>
+      <span class="problem-title">Power Series via Integration</span>
+    </div>
+    <div class="problem-prompt">
+      Use properties of power series to find a power series representation for
+      <div class="series-display">\[ \int_0^x \frac{1}{1-3t^2}\,dt \]</div>
+    </div>
+    <div class="solution-body">
+
+      <div class="step">
+        <div class="step-label">Start from a Known Series</div>
+        From Problem 9 with \(x\) replaced by \(t^2\), we have the pointwise identity:
+        <div class="math-block">
+          \[ \frac{1}{1-3t^2} = \sum_{n=0}^{\infty} 3^n t^{2n}, \quad |t| < \frac{1}{\sqrt{3}} \]
+        </div>
+      </div>
+
+      <div class="step">
+        <div class="step-label">Integrate Term-by-Term</div>
+        The term-by-term integration theorem for power series licenses integrating both sides over \([0, x]\) for any \(x\) in the interval of convergence. Using \(t\) as the dummy variable of integration and \(x\) as the upper limit:
+        <div class="math-block">
+          \[ \int_0^x \frac{1}{1-3t^2}\,dt = \int_0^x \sum_{n=0}^{\infty} 3^n t^{2n}\,dt = \sum_{n=0}^{\infty} 3^n \int_0^x t^{2n}\,dt = \sum_{n=0}^{\infty} \frac{3^n\, x^{2n+1}}{2n+1} \]
+        </div>
+        Since the lower limit is \(t = 0\), every term evaluates to zero at the lower bound, so no constant of integration appears — the result is a unique function of \(x\), not a family of antiderivatives.
+      </div>
+
+      <div class="step">
+        <div class="step-label">Write Out the First Several Terms</div>
+        <div class="math-block">
+          \[ = x + x^3 + \frac{9}{5}x^5 + \frac{27}{7}x^7 + \cdots \]
+        </div>
+      </div>
+
+      <div class="conclusion">
+        \[ \int_0^x \frac{1}{1-3t^2}\,dt = \sum_{n=0}^{\infty} \frac{3^n}{2n+1}\, x^{2n+1}, \quad |x| < \frac{1}{\sqrt{3}} \]
+      </div>
+
+      <div class="note">
+        Using a definite integral from \(0\) to \(x\) is the more principled formulation here. The term-by-term integration theorem is a statement about definite integrals on subintervals of the radius of convergence — the definite integral produces a unique function of \(x\) that directly matches the theorem's conclusion, without introducing an undetermined constant.
+      </div>
+
+    </div>
+  </div>
+  <a href="#top" class="back-to-top">↑ Back to top</a>
+
+
+  <!-- ══════════════════════════════════════════════════════════ -->
+  <!-- Problem 11 -->
+  <!-- ══════════════════════════════════════════════════════════ -->
+  <div class="problem" id="p11">
+    <div class="problem-header">
+      <span class="problem-num">11</span>
+      <span class="problem-title">Taylor Polynomial Approximation</span>
+    </div>
+    <div class="problem-prompt">
+      Approximate \(f(x) = \cos(x)\) by using the first four non-zero terms of the Taylor polynomial at \(x = \dfrac{\pi}{2}\).
+    </div>
+    <div class="solution-body">
+
+      <div class="step">
+        <div class="step-label">Compute Derivatives at \(a = \dfrac{\pi}{2}\)</div>
+        <div style="overflow-x:auto;">
+        <table style="border-collapse:collapse; margin: 12px auto; font-size: 0.95rem; font-family: 'Bitter', serif; font-weight: 300;">
+          <thead>
+            <tr style="background: var(--ink); color: #fff;">
+              <th style="padding: 8px 20px;">&#8202;\(k\)&#8202;</th>
+              <th style="padding: 8px 20px;">\(f^{(k)}(x)\)</th>
+              <th style="padding: 8px 20px;">\(f^{(k)}\!\left(\tfrac{\pi}{2}\right)\)</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr style="background: var(--cream);">
+              <td style="padding: 8px 20px; text-align:center;">0</td>
+              <td style="padding: 8px 20px;">\(\cos x\)</td>
+              <td style="padding: 8px 20px; text-align:center;">\(0\)</td>
+            </tr>
+            <tr>
+              <td style="padding: 8px 20px; text-align:center;">1</td>
+              <td style="padding: 8px 20px;">\(-\sin x\)</td>
+              <td style="padding: 8px 20px; text-align:center;">\(-1\)</td>
+            </tr>
+            <tr style="background: var(--cream);">
+              <td style="padding: 8px 20px; text-align:center;">2</td>
+              <td style="padding: 8px 20px;">\(-\cos x\)</td>
+              <td style="padding: 8px 20px; text-align:center;">\(0\)</td>
+            </tr>
+            <tr>
+              <td style="padding: 8px 20px; text-align:center;">3</td>
+              <td style="padding: 8px 20px;">\(\sin x\)</td>
+              <td style="padding: 8px 20px; text-align:center;">\(1\)</td>
+            </tr>
+            <tr style="background: var(--cream);">
+              <td style="padding: 8px 20px; text-align:center;">4</td>
+              <td style="padding: 8px 20px;">\(\cos x\)</td>
+              <td style="padding: 8px 20px; text-align:center;">\(0\)</td>
+            </tr>
+            <tr>
+              <td style="padding: 8px 20px; text-align:center;">5</td>
+              <td style="padding: 8px 20px;">\(-\sin x\)</td>
+              <td style="padding: 8px 20px; text-align:center;">\(-1\)</td>
+            </tr>
+            <tr style="background: var(--cream);">
+              <td style="padding: 8px 20px; text-align:center;">6</td>
+              <td style="padding: 8px 20px;">\(-\cos x\)</td>
+              <td style="padding: 8px 20px; text-align:center;">\(0\)</td>
+            </tr>
+            <tr>
+              <td style="padding: 8px 20px; text-align:center;">7</td>
+              <td style="padding: 8px 20px;">\(\sin x\)</td>
+              <td style="padding: 8px 20px; text-align:center;">\(1\)</td>
+            </tr>
+          </tbody>
+        </table>
+        </div>
+        The non-zero values appear at odd \(k\), alternating sign: \(-1, +1, -1, +1, \ldots\)
+      </div>
+
+      <div class="step">
+        <div class="step-label">Write the Taylor Series</div>
+        The Taylor series for \(\cos x\) centered at \(a = \dfrac{\pi}{2}\) is:
+        <div class="math-block">
+          \[ \cos x = \sum_{k=0}^{\infty} \frac{f^{(k)}\!\left(\tfrac{\pi}{2}\right)}{k!}\left(x - \frac{\pi}{2}\right)^k \]
+        </div>
+        Only odd powers contribute. Letting \(u = x - \dfrac{\pi}{2}\):
+        <div class="math-block">
+          \[ \cos x = -\frac{u^1}{1!} + \frac{u^3}{3!} - \frac{u^5}{5!} + \frac{u^7}{7!} - \cdots \]
+        </div>
+      </div>
+
+      <div class="step">
+        <div class="step-label">State the Four-Term Polynomial</div>
+        The <strong>first four non-zero terms</strong> of the Taylor polynomial \(T_7(x)\) centered at \(\dfrac{\pi}{2}\):
+        <div class="math-block">
+          \[ P(x) = -\!\left(x - \frac{\pi}{2}\right) + \frac{1}{6}\!\left(x-\frac{\pi}{2}\right)^3 - \frac{1}{120}\!\left(x-\frac{\pi}{2}\right)^5 + \frac{1}{5040}\!\left(x-\frac{\pi}{2}\right)^7 \]
+        </div>
+      </div>
+
+      <div class="conclusion">
+        \[ \cos x \approx -\!\left(x-\tfrac{\pi}{2}\right) + \tfrac{1}{6}\!\left(x-\tfrac{\pi}{2}\right)^3 - \tfrac{1}{120}\!\left(x-\tfrac{\pi}{2}\right)^5 + \tfrac{1}{5040}\!\left(x-\tfrac{\pi}{2}\right)^7 \]
+      </div>
+
+      <div class="note">
+        Observe that this is exactly \(-\sin(u)\) expanded at \(u=0\), which makes sense: \(\cos\!\left(\tfrac{\pi}{2}+u\right) = -\sin u\). The series matches the Maclaurin series for \(-\sin u\) term-for-term.
+      </div>
+
+    </div>
+  </div>
+  <a href="#top" class="back-to-top">↑ Back to top</a>
+
+
+  <footer>
+    Unit 10 Mastery Check · AP Calculus BC · Spring 2026 &nbsp;·&nbsp; Teacher Solution Guide
+  </footer>
+
+</div>
+
+<script>
+  /* ── CYU state: one entry per problem quiz ── */
+  const state = {
+    'p1': { answered: 0, correct: 0, total: 4 },
+    'p2': { answered: 0, correct: 0, total: 4 },
+    'p3': { answered: 0, correct: 0, total: 4 }
+  };
+
+  function toggleCYU(toggle) {
+    const icon  = toggle.querySelector('.cyu-toggle-icon');
+    const panel = toggle.nextElementSibling;
+    const open  = panel.classList.toggle('open');
+    icon.classList.toggle('open', open);
+  }
+
+  function selectChoice(btn) {
+    const qDiv = btn.closest('.cyu-question');
+    if (qDiv.querySelector('.cyu-feedback.show')) return;
+    qDiv.querySelectorAll('.cyu-choice').forEach(b => b.classList.remove('selected'));
+    btn.classList.add('selected');
+    qDiv.querySelector('.cyu-check').classList.add('ready');
+  }
+
+  function checkAnswer(checkBtn) {
+    const qDiv     = checkBtn.closest('.cyu-question');
+    const selected = qDiv.querySelector('.cyu-choice.selected');
+    if (!selected) return;
+
+    const isCorrect = selected.dataset.correct === 'true';
+
+    qDiv.querySelectorAll('.cyu-choice').forEach(b => {
+      b.disabled = true;
+      b.classList.remove('selected');
+      if (b.dataset.correct === 'true')      b.classList.add('correct');
+      else if (b === selected && !isCorrect) b.classList.add('wrong');
+      else                                    b.classList.add('dimmed');
+    });
+
+    checkBtn.style.display = 'none';
+
+    const feedback = qDiv.querySelector('.cyu-feedback');
+    feedback.classList.add('show');
+    const verdict = feedback.querySelector('.cyu-feedback-verdict');
+    verdict.textContent = isCorrect ? '✓ Correct.' : '✗ Not quite — the correct answer is highlighted above.';
+    verdict.className   = 'cyu-feedback-verdict ' + (isCorrect ? 'correct-v' : 'wrong-v');
+
+    if (window.MathJax) MathJax.typesetPromise([feedback.querySelector('.cyu-explanation')]);
+
+    const quizKey = qDiv.closest('.cyu-panel').id.replace('cyu-', '');
+    state[quizKey].answered++;
+    if (isCorrect) state[quizKey].correct++;
+    const pct = (state[quizKey].answered / state[quizKey].total) * 100;
+    document.getElementById('cyu-' + quizKey + '-progress').style.width = pct + '%';
+
+    if (state[quizKey].answered === state[quizKey].total) showSummary(quizKey);
+  }
+
+  function showSummary(quizKey) {
+    const s   = state[quizKey];
+    const msg = s.correct === s.total ? 'Excellent — strong conceptual understanding.'
+              : s.correct >= 3        ? 'Good work. Review the explanations for any questions you missed.'
+              : s.correct >= 2        ? 'A few gaps here — revisit the explanations before moving on.'
+              :                         'Return to the solution above, then work through the explanations carefully.';
+    document.getElementById('cyu-' + quizKey + '-score').textContent      = s.correct + ' / ' + s.total;
+    document.getElementById('cyu-' + quizKey + '-summary-text').textContent = msg;
+    document.getElementById('cyu-' + quizKey + '-summary').classList.add('show');
+  }
+
+  function resetQuiz(quizKey) {
+    state[quizKey] = { answered: 0, correct: 0, total: state[quizKey].total };
+    document.getElementById('cyu-' + quizKey + '-progress').style.width = '0%';
+
+    document.querySelectorAll('#cyu-' + quizKey + ' .cyu-question').forEach(qDiv => {
+      qDiv.querySelectorAll('.cyu-choice').forEach(b => {
+        b.disabled = false;
+        b.classList.remove('selected','correct','wrong','dimmed');
+      });
+      const checkBtn = qDiv.querySelector('.cyu-check');
+      checkBtn.classList.remove('ready');
+      checkBtn.style.display = '';
+      qDiv.querySelector('.cyu-feedback').classList.remove('show');
+    });
+
+    document.getElementById('cyu-' + quizKey + '-summary').classList.remove('show');
+  }
+</script>
+</body>
+</html>
