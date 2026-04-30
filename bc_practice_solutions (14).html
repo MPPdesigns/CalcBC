@@ -1,0 +1,1917 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>AP Calculus BC Practice Exam – Solution Guide</title>
+  <script>
+    MathJax = {
+      tex: {
+        inlineMath: [['\\(', '\\)']],
+        displayMath: [['\\[', '\\]']],
+        tags: 'none'
+      },
+      options: { skipHtmlTags: ['script','noscript','style','textarea','pre'] }
+    };
+  </script>
+  <script async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Bitter:ital,wght@0,300;0,400;0,600;1,300;1,400&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet"/>
+
+  <style>
+    :root {
+      --ink:       #1a1a2e;
+      --paper:     #faf8f3;
+      --cream:     #f2ede3;
+      --rule:      #d6ccb8;
+      --accent:    #8b2e16;
+      --gold:      #c49a3c;
+      --muted:     #6b6456;
+      --correct:   #2d6a2d;
+      --correct-bg:#e8f4e8;
+      --radius: 4px;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Bitter', Georgia, serif;
+      font-weight: 300;
+      background: var(--paper);
+      color: var(--ink);
+      font-size: 17px;
+      line-height: 1.75;
+      padding: 0 0 80px;
+    }
+
+    /* ── Header ── */
+    header {
+      background: var(--ink);
+      color: var(--paper);
+      padding: 48px 60px 36px;
+      border-bottom: 4px solid var(--gold);
+      position: relative;
+      overflow: hidden;
+    }
+    header::before {
+      content: '';
+      position: absolute;
+      top: -60px; right: -60px;
+      width: 260px; height: 260px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(196,154,60,0.15) 0%, transparent 70%);
+    }
+    header .eyebrow {
+      font-family: 'Bitter', serif;
+      font-style: italic;
+      color: var(--gold);
+      font-size: 14px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      margin-bottom: 10px;
+    }
+    header h1 {
+      font-family: 'Libre Baskerville', serif;
+      font-size: 2.4rem;
+      line-height: 1.15;
+      margin-bottom: 8px;
+      color: var(--paper);
+    }
+    header .subtitle {
+      color: rgba(250,248,243,0.65);
+      font-style: italic;
+      font-size: 1rem;
+    }
+
+    /* ── Navigation ── */
+    nav {
+      background: var(--cream);
+      border-bottom: 1px solid var(--rule);
+      padding: 14px 60px;
+      display: flex;
+      gap: 24px;
+      flex-wrap: wrap;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+    nav a {
+      font-family: 'Bitter', serif;
+      font-size: 14px;
+      letter-spacing: 0.06em;
+      color: var(--accent);
+      text-decoration: none;
+      padding: 2px 0;
+      border-bottom: 1px solid transparent;
+      transition: border-color 0.2s;
+    }
+    nav a:hover { border-color: var(--accent); }
+
+    /* ── Content wrapper ── */
+    main {
+      max-width: 920px;
+      margin: 0 auto;
+      padding: 48px 40px;
+    }
+
+    /* ── Section headers ── */
+    .section-header {
+      margin: 52px 0 28px;
+      padding-bottom: 14px;
+      border-bottom: 2px solid var(--rule);
+      position: relative;
+    }
+    .section-header::after {
+      content: '';
+      position: absolute;
+      left: 0; bottom: -2px;
+      width: 60px; height: 2px;
+      background: var(--accent);
+    }
+    .section-header h2 {
+      font-family: 'Libre Baskerville', serif;
+      font-size: 1.55rem;
+      color: var(--accent);
+      margin-bottom: 4px;
+    }
+    .section-header .note {
+      font-style: italic;
+      color: var(--muted);
+      font-size: 0.92rem;
+    }
+
+    /* ── Answer key grid ── */
+    .answer-key {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(80px, 1fr));
+      gap: 8px;
+      margin: 24px 0 40px;
+    }
+    .ak-item {
+      background: var(--cream);
+      border: 1px solid var(--rule);
+      border-radius: var(--radius);
+      padding: 8px 10px;
+      text-align: center;
+    }
+    .ak-item .qnum {
+      font-size: 11px;
+      color: var(--muted);
+      letter-spacing: 0.05em;
+    }
+    .ak-item .ans {
+      font-family: 'Libre Baskerville', serif;
+      font-size: 1.1rem;
+      color: var(--correct);
+      font-weight: 700;
+    }
+
+    /* ── Problem card ── */
+    .problem {
+      background: white;
+      border: 1px solid var(--rule);
+      border-radius: 6px;
+      margin: 20px 0;
+      overflow: hidden;
+      box-shadow: 0 1px 4px rgba(26,26,46,0.06);
+    }
+    .problem-header {
+      background: var(--cream);
+      border-bottom: 1px solid var(--rule);
+      padding: 12px 20px;
+      display: flex;
+      align-items: baseline;
+      gap: 14px;
+    }
+    .problem-header .pnum {
+      font-family: 'Libre Baskerville', serif;
+      font-size: 1.1rem;
+      color: var(--accent);
+      min-width: 36px;
+    }
+    .problem-header .answer-badge {
+      background: var(--correct);
+      color: white;
+      font-size: 12px;
+      letter-spacing: 0.08em;
+      padding: 2px 10px;
+      border-radius: 20px;
+      font-family: 'Bitter', serif;
+    }
+    .problem-header .topic-tag {
+      font-style: italic;
+      color: var(--muted);
+      font-size: 0.88rem;
+      margin-left: auto;
+    }
+    .problem-body {
+      padding: 18px 22px 22px;
+    }
+
+    /* ── Solution steps ── */
+    .step {
+      margin: 10px 0;
+      padding-left: 20px;
+      border-left: 2px solid var(--rule);
+    }
+    .step-label {
+      font-size: 12px;
+      letter-spacing: 0.1em;
+      color: var(--gold);
+      text-transform: uppercase;
+      margin-bottom: 4px;
+    }
+
+    .math-display {
+      margin: 12px 0;
+      padding: 10px 18px;
+      background: var(--cream);
+      border-radius: var(--radius);
+      border-left: 3px solid var(--gold);
+      overflow-x: auto;
+    }
+
+    .key-insight {
+      background: var(--correct-bg);
+      border: 1px solid #a8d5a8;
+      border-radius: var(--radius);
+      padding: 10px 16px;
+      margin: 12px 0;
+      font-size: 0.95rem;
+    }
+    .key-insight::before {
+      content: '✦ ';
+      color: var(--correct);
+    }
+
+    .distractor-note {
+      background: #fdf3e8;
+      border: 1px solid #e8c98a;
+      border-radius: var(--radius);
+      padding: 10px 16px;
+      margin: 12px 0;
+      font-size: 0.92rem;
+      color: #6b4f1a;
+    }
+    .distractor-note::before {
+      content: '⚠ Common error: ';
+      font-weight: 600;
+    }
+
+    p { margin: 8px 0; }
+
+    /* ── FR sub-parts ── */
+    .fr-part {
+      margin: 18px 0;
+      padding: 16px 20px;
+      border: 1px solid var(--rule);
+      border-radius: var(--radius);
+      background: var(--paper);
+    }
+    .fr-part-label {
+      font-family: 'Libre Baskerville', serif;
+      font-size: 1rem;
+      color: var(--accent);
+      margin-bottom: 10px;
+      font-weight: 700;
+    }
+
+    /* ── Separator ── */
+    .ornament {
+      text-align: center;
+      color: var(--rule);
+      font-size: 1.4rem;
+      margin: 40px 0 10px;
+      letter-spacing: 0.5em;
+    }
+
+
+    /* ── Return link ── */
+    .return-link {
+      text-align: right;
+      padding: 10px 22px 4px;
+      border-top: 1px solid var(--rule);
+      margin-top: 8px;
+    }
+    .return-link a {
+      font-family: 'Bitter', serif;
+      font-size: 12px;
+      letter-spacing: 0.08em;
+      color: var(--muted);
+      text-decoration: none;
+      text-transform: uppercase;
+    }
+    .return-link a:hover { color: var(--accent); }
+
+    /* ── Answer key clickable links ── */
+    .ak-link {
+      text-decoration: none;
+    }
+    .ak-link .ak-item {
+      cursor: pointer;
+      transition: background 0.15s, border-color 0.15s;
+    }
+    .ak-link .ak-item:hover {
+      background: var(--ink);
+      border-color: var(--gold);
+    }
+    .ak-link .ak-item:hover .qnum { color: var(--gold); }
+    .ak-link .ak-item:hover .ans  { color: white; }
+
+    @media (max-width: 680px) {
+      header { padding: 32px 24px; }
+      nav { padding: 10px 20px; }
+      main { padding: 24px 16px; }
+      header h1 { font-size: 1.7rem; }
+    }
+  </style>
+</head>
+<body>
+
+<header id="top">
+  <div class="eyebrow">Instructor Resource</div>
+  <h1>AP® Calculus BC<br>Practice Exam — Solution Guide</h1>
+  <p class="subtitle">Section 1: Multiple Choice (Parts A &amp; B) &nbsp;·&nbsp; Section 2: Free Response (Parts A &amp; B)</p>
+</header>
+
+<nav>
+  <a href="#mc-a">MC Part A</a>
+  <a href="#mc-b">MC Part B</a>
+  <a href="#fr-a">FR Part A</a>
+  <a href="#fr-b">FR Part B</a>
+</nav>
+
+<main>
+
+<!-- ═══════════════════════════════════════════
+     SECTION 1 · MULTIPLE CHOICE · PART A
+════════════════════════════════════════════ -->
+<div class="section-header" id="mc-a">
+  <h2>Section 1 · Multiple Choice, Part A</h2>
+  <div class="note">No calculator permitted &nbsp;·&nbsp; Questions 1–30</div>
+</div>
+
+<!-- Quick Answer Key -->
+<div class="answer-key" id="answer-key-a">
+  <a href="#q1" class="ak-link"><div class="ak-item"><div class="qnum">Q1</div><div class="ans">A</div></div></a>
+  <a href="#q2" class="ak-link"><div class="ak-item"><div class="qnum">Q2</div><div class="ans">A</div></div></a>
+  <a href="#q3" class="ak-link"><div class="ak-item"><div class="qnum">Q3</div><div class="ans">C</div></div></a>
+  <a href="#q4" class="ak-link"><div class="ak-item"><div class="qnum">Q4</div><div class="ans">D</div></div></a>
+  <a href="#q5" class="ak-link"><div class="ak-item"><div class="qnum">Q5</div><div class="ans">C</div></div></a>
+  <a href="#q6" class="ak-link"><div class="ak-item"><div class="qnum">Q6</div><div class="ans">A</div></div></a>
+  <a href="#q7" class="ak-link"><div class="ak-item"><div class="qnum">Q7</div><div class="ans">B</div></div></a>
+  <a href="#q8" class="ak-link"><div class="ak-item"><div class="qnum">Q8</div><div class="ans">B</div></div></a>
+  <a href="#q9" class="ak-link"><div class="ak-item"><div class="qnum">Q9</div><div class="ans">C</div></div></a>
+  <a href="#q10" class="ak-link"><div class="ak-item"><div class="qnum">Q10</div><div class="ans">D</div></div></a>
+  <a href="#q11" class="ak-link"><div class="ak-item"><div class="qnum">Q11</div><div class="ans">C</div></div></a>
+  <a href="#q12" class="ak-link"><div class="ak-item"><div class="qnum">Q12</div><div class="ans">C</div></div></a>
+  <a href="#q13" class="ak-link"><div class="ak-item"><div class="qnum">Q13</div><div class="ans">C</div></div></a>
+  <a href="#q14" class="ak-link"><div class="ak-item"><div class="qnum">Q14</div><div class="ans">B</div></div></a>
+  <a href="#q15" class="ak-link"><div class="ak-item"><div class="qnum">Q15</div><div class="ans">B</div></div></a>
+  <a href="#q16" class="ak-link"><div class="ak-item"><div class="qnum">Q16</div><div class="ans">C</div></div></a>
+  <a href="#q17" class="ak-link"><div class="ak-item"><div class="qnum">Q17</div><div class="ans">A</div></div></a>
+  <a href="#q18" class="ak-link"><div class="ak-item"><div class="qnum">Q18</div><div class="ans">B</div></div></a>
+  <a href="#q19" class="ak-link"><div class="ak-item"><div class="qnum">Q19</div><div class="ans">D</div></div></a>
+  <a href="#q20" class="ak-link"><div class="ak-item"><div class="qnum">Q20</div><div class="ans">A</div></div></a>
+  <a href="#q21" class="ak-link"><div class="ak-item"><div class="qnum">Q21</div><div class="ans">C</div></div></a>
+  <a href="#q22" class="ak-link"><div class="ak-item"><div class="qnum">Q22</div><div class="ans">B</div></div></a>
+  <a href="#q23" class="ak-link"><div class="ak-item"><div class="qnum">Q23</div><div class="ans">B</div></div></a>
+  <a href="#q24" class="ak-link"><div class="ak-item"><div class="qnum">Q24</div><div class="ans">D</div></div></a>
+  <a href="#q25" class="ak-link"><div class="ak-item"><div class="qnum">Q25</div><div class="ans">B</div></div></a>
+  <a href="#q26" class="ak-link"><div class="ak-item"><div class="qnum">Q26</div><div class="ans">C</div></div></a>
+  <a href="#q27" class="ak-link"><div class="ak-item"><div class="qnum">Q27</div><div class="ans">A</div></div></a>
+  <a href="#q28" class="ak-link"><div class="ak-item"><div class="qnum">Q28</div><div class="ans">A</div></div></a>
+  <a href="#q29" class="ak-link"><div class="ak-item"><div class="qnum">Q29</div><div class="ans">A</div></div></a>
+  <a href="#q30" class="ak-link"><div class="ak-item"><div class="qnum">Q30</div><div class="ans">B</div></div></a>
+</div>
+
+<!-- Q1 -->
+<div class="problem" id="q1">
+  <div class="problem-header">
+    <span class="pnum">1</span>
+    <span class="answer-badge">Answer: A</span>
+    <span class="topic-tag">Integration by Long Division + Partial Fractions</span>
+  </div>
+  <div class="problem-body">
+    <p>Evaluate \(\displaystyle\int \frac{3x^2-7x-4}{x-3}\,dx\).</p>
+    <div class="step">
+      <div class="step-label">Step 1 — Polynomial long division</div>
+      <p>The degree of the numerator equals the degree of the denominator + 1, so divide first.</p>
+      <div class="math-display">
+        \[\frac{3x^2-7x-4}{x-3} = 3x+2 + \frac{2}{x-3}\]
+      </div>
+      <p>Check: \((3x+2)(x-3)+2 = 3x^2-9x+2x-6+2 = 3x^2-7x-4\). ✓</p>
+    </div>
+    <div class="step">
+      <div class="step-label">Step 2 — Integrate term by term</div>
+      <div class="math-display">
+        \[\int\left(3x+2+\frac{2}{x-3}\right)dx = \tfrac{3}{2}x^2+2x+2\ln|x-3|+C\]
+      </div>
+    </div>
+    <div class="key-insight">The remainder after division is \(2\), not \(-10\), which rules out (B).</div>
+  </div>
+  <div class="return-link"><a href="#answer-key-a">↑ Return to answer key</a></div>
+</div>
+
+<!-- Q2 -->
+<div class="problem" id="q2">
+  <div class="problem-header">
+    <span class="pnum">2</span>
+    <span class="answer-badge">Answer: A</span>
+    <span class="topic-tag">Definite Integral with Variable Upper Limit / FTC</span>
+  </div>
+  <div class="problem-body">
+    <p>Evaluate \(\displaystyle\int_0^{x^2} e^{3t}\,dt\).</p>
+    <div class="step">
+      <div class="step-label">Antiderivative and evaluation</div>
+      <div class="math-display">
+        \[\int_0^{x^2} e^{3t}\,dt = \left[\frac{e^{3t}}{3}\right]_0^{x^2} = \frac{e^{3x^2}}{3} - \frac{1}{3} = \frac{1}{3}\!\left(e^{3x^2}-1\right)\]
+      </div>
+    </div>
+    <div class="distractor-note">Forgetting to divide by 3 (chain rule for integration) gives choice (C) \(= 2xe^{3x^2}\) — this is actually the derivative of the correct answer via FTC Part 1, not the integral itself.</div>
+  </div>
+  <div class="return-link"><a href="#answer-key-a">↑ Return to answer key</a></div>
+</div>
+
+<!-- Q3 -->
+<div class="problem" id="q3">
+  <div class="problem-header">
+    <span class="pnum">3</span>
+    <span class="answer-badge">Answer: C</span>
+    <span class="topic-tag">Slope of Tangent Line / Chain Rule</span>
+  </div>
+  <div class="problem-body">
+    <p>Find the slope of the tangent to \(y = e^{6x} - \sin(4x)\) at \(x=0\).</p>
+    <div class="step">
+      <div class="step-label">Differentiate using the Chain Rule</div>
+      <div class="math-display">
+        \[y' = 6e^{6x} - 4\cos(4x)\]
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-label">Evaluate at x = 0</div>
+      <div class="math-display">
+        \[y'(0) = 6e^{0} - 4\cos(0) = 6(1) - 4(1) = 2\]
+      </div>
+    </div>
+  </div>
+  <div class="return-link"><a href="#answer-key-a">↑ Return to answer key</a></div>
+</div>
+
+<!-- Q4 -->
+<div class="problem" id="q4">
+  <div class="problem-header">
+    <span class="pnum">4</span>
+    <span class="answer-badge">Answer: D</span>
+    <span class="topic-tag">L'Hôpital's Rule</span>
+  </div>
+  <div class="problem-body">
+    <p>Evaluate \(\displaystyle\lim_{x\to 0}\frac{2e^{5x}-5e^{2x}+3}{x^2-2\cos(2x)+2}\).</p>
+    <div class="step">
+      <div class="step-label">Check indeterminate form</div>
+      <p>At \(x=0\): numerator \(= 2-5+3=0\); denominator \(= 0-2+2=0\). Form \(\tfrac{0}{0}\).</p>
+    </div>
+    <div class="step">
+      <div class="step-label">First application of L'Hôpital</div>
+      <div class="math-display">
+        \[\frac{10e^{5x}-10e^{2x}}{2x+4\sin(2x)}\xrightarrow{x\to 0}\frac{0}{0}\]
+      </div>
+      <p>Still indeterminate — apply L'Hôpital a second time.</p>
+    </div>
+    <div class="step">
+      <div class="step-label">Second application of L'Hôpital</div>
+      <div class="math-display">
+        \[\frac{50e^{5x}-20e^{2x}}{2+8\cos(2x)}\xrightarrow{x\to 0}\frac{50-20}{2+8} = \frac{30}{10} = 3\]
+      </div>
+    </div>
+    <div class="key-insight">Answer: <strong>(D) 3</strong>.</div>
+  </div>
+  <div class="return-link"><a href="#answer-key-a">↑ Return to answer key</a></div>
+</div>
+
+<!-- Q5 -->
+<div class="problem" id="q5">
+  <div class="problem-header">
+    <span class="pnum">5</span>
+    <span class="answer-badge">Answer: C</span>
+    <span class="topic-tag">Series Convergence Tests</span>
+  </div>
+  <div class="problem-body">
+    <p>Which of the series I, II, III converge?</p>
+    <div class="step">
+      <div class="step-label">Series I</div>
+      <p>This is a \(p\)-series with \(p = \tfrac{2}{3} < 1\). <strong>Diverges.</strong></p>
+    </div>
+    <div class="step">
+      <div class="step-label">Series II</div>
+      <p>Compare to \(\frac{k}{k^3} = \frac{1}{k^2}\) (a convergent \(p\)-series, \(p=2\)). By Limit Comparison Test with \(b_k = \frac{1}{k^2}\):</p>
+      <div class="math-display">\[\lim_{k\to\infty}\frac{k/(k^3+5k+1)}{1/k^2} = \lim_{k\to\infty}\frac{k^3}{k^3+5k+1} = 1 > 0\]</div>
+      <p><strong>Converges.</strong></p>
+    </div>
+    <div class="step">
+      <div class="step-label">Series III</div>
+      <p>Alternating series. Check: \(\frac{1}{k}\) is decreasing and \(\to 0\). By the Alternating Series Test, <strong>converges</strong> (conditionally).</p>
+    </div>
+    <div class="key-insight">Series I diverges; Series II and III converge. Answer: <strong>(C) II and III</strong>.</div>
+  </div>
+  <div class="return-link"><a href="#answer-key-a">↑ Return to answer key</a></div>
+</div>
+
+<!-- Q6 -->
+<div class="problem" id="q6">
+  <div class="problem-header">
+    <span class="pnum">6</span>
+    <span class="answer-badge">Answer: A</span>
+    <span class="topic-tag">Integration by Partial Fractions</span>
+  </div>
+  <div class="problem-body">
+    <p>Evaluate \(\displaystyle\int\frac{4x-1}{2x^2-x-1}\,dx\).</p>
+    <div class="step">
+      <div class="step-label">Factor denominator</div>
+      <div class="math-display">\[2x^2-x-1 = (2x+1)(x-1)\]</div>
+    </div>
+    <div class="step">
+      <div class="step-label">Partial fraction decomposition</div>
+      <div class="math-display">\[\frac{4x-1}{(x-1)(2x+1)} = \frac{A}{x-1}+\frac{B}{2x+1}\]</div>
+      <p>\(4x-1 = A(2x+1)+B(x-1)\).</p>
+      <p>Set \(x=1\): \(3 = 3A \Rightarrow A=1\).</p>
+      <p>Set \(x=-\tfrac{1}{2}\): \(-3 = -\tfrac{3}{2}B \Rightarrow B=2\).</p>
+    </div>
+    <div class="step">
+      <div class="step-label">Integrate</div>
+      <div class="math-display">\[\int\left(\frac{1}{x-1}+\frac{2}{2x+1}\right)dx = \ln|x-1|+\ln|2x+1|+C = \ln|(x-1)(2x+1)|+C\]</div>
+    </div>
+    <div class="key-insight">Answer is <strong>(A)</strong>: \(\ln|(x-1)(2x+1)|+C\).</div>
+  </div>
+  <div class="return-link"><a href="#answer-key-a">↑ Return to answer key</a></div>
+</div>
+
+<!-- Q7 -->
+<div class="problem" id="q7">
+  <div class="problem-header">
+    <span class="pnum">7</span>
+    <span class="answer-badge">Answer: B</span>
+    <span class="topic-tag">Telescoping Series</span>
+  </div>
+  <div class="problem-body">
+    <p>Find \(\displaystyle\sum_{k=1}^\infty\!\left(\frac{1}{k}-\frac{1}{k+2}\right)\).</p>
+    <div class="step">
+      <div class="step-label">Write partial sums — telescoping</div>
+      <p>Partial sum \(S_n = \left(1-\tfrac{1}{3}\right)+\left(\tfrac{1}{2}-\tfrac{1}{4}\right)+\left(\tfrac{1}{3}-\tfrac{1}{5}\right)+\cdots\)</p>
+      <p>The pattern telescopes, leaving only the first two positive terms minus the last two negative terms:</p>
+      <div class="math-display">\[S_n = 1+\frac{1}{2}-\frac{1}{n+1}-\frac{1}{n+2}\]</div>
+    </div>
+    <div class="step">
+      <div class="step-label">Take the limit</div>
+      <div class="math-display">\[\lim_{n\to\infty} S_n = 1+\frac{1}{2}-0-0 = \frac{3}{2} = 1.5\]</div>
+    </div>
+    <div class="key-insight">Answer: <strong>(B) 1.5</strong>. Note the gap of 2 in the telescoping means two initial terms survive.</div>
+  </div>
+  <div class="return-link"><a href="#answer-key-a">↑ Return to answer key</a></div>
+</div>
+
+<!-- Q8 -->
+<div class="problem" id="q8">
+  <div class="problem-header">
+    <span class="pnum">8</span>
+    <span class="answer-badge">Answer: B</span>
+    <span class="topic-tag">Points of Inflection / Second Derivative</span>
+  </div>
+  <div class="problem-body">
+    <p>Given \(f''(x)=x^2(x-1)\sqrt{x+1}\), find where \(f\) has inflection points.</p>
+    <div class="step">
+      <div class="step-label">Find sign changes of f ''(x)</div>
+      <p>Domain: \(x\geq -1\) (square root). Zeros of \(f''\): \(x=-1\), \(x=0\) (multiplicity 2), and \(x=1\).</p>
+      <p>At \(x=0\): \(x^2\geq 0\) for all \(x\), so the \(x^2\) factor does not change sign. The sign of \(f''\) near \(x=0\) is therefore governed entirely by \((x-1)\sqrt{x+1}\), which is negative on both sides of \(x=0\). Since \(f''\) does not change sign at \(x=0\), this is <strong>not</strong> an inflection point.</p>
+      <p>At \(x=1\): \((x-1)\) changes sign from \(-\) to \(+\), while \(x^2>0\) and \(\sqrt{x+1}>0\). So \(f''\) changes sign. <strong>Inflection point at \(x=1\).</strong></p>
+      <p>At \(x=-1\): left endpoint of the domain — not an interior point, so not an inflection point.</p>
+    </div>
+    <div class="key-insight">The only inflection point is at \(x=1\). Answer: <strong>(B) 1 only</strong>.</div>
+    <div class="distractor-note">A common error is to conclude \(x=0\) is an inflection point because \(f''(0)=0\). A zero of \(f''\) is only an inflection point if \(f''\) <em>changes sign</em> there. The even multiplicity of the factor \(x^2\) means \(f''\) keeps the same sign on both sides of \(x=0\).</div>
+  </div>
+  <div class="return-link"><a href="#answer-key-a">↑ Return to answer key</a></div>
+</div>
+
+<!-- Q9 -->
+<div class="problem" id="q9">
+  <div class="problem-header">
+    <span class="pnum">9</span>
+    <span class="answer-badge">Answer: C</span>
+    <span class="topic-tag">FTC / u-Substitution with Antiderivative Notation</span>
+  </div>
+  <div class="problem-body">
+    <p>If \(F'(x)=f(x)\), evaluate \(\displaystyle\int_2^5 f(3x+2)\,dx\).</p>
+    <div class="step">
+      <div class="step-label">Substitution</div>
+      <p>Let \(u=3x+2\). Then \(du = 3\,dx\), so \(dx = \tfrac{du}{3}\). Limits: \(x=2\Rightarrow u=8\); \(x=5\Rightarrow u=17\).</p>
+      <div class="math-display">
+        \[\int_2^5 f(3x+2)\,dx = \frac{1}{3}\int_8^{17}f(u)\,du = \frac{1}{3}\left[F(u)\right]_8^{17} = \frac{1}{3}F(17)-\frac{1}{3}F(8)\]
+      </div>
+    </div>
+    <div class="key-insight">Answer: <strong>(C)</strong> \(\tfrac{1}{3}F(17)-\tfrac{1}{3}F(8)\).</div>
+  </div>
+  <div class="return-link"><a href="#answer-key-a">↑ Return to answer key</a></div>
+</div>
+
+<!-- Q10 -->
+<div class="problem" id="q10">
+  <div class="problem-header">
+    <span class="pnum">10</span>
+    <span class="answer-badge">Answer: D</span>
+    <span class="topic-tag">Geometric Series — Sum</span>
+  </div>
+  <div class="problem-body">
+    <p>Find \(\displaystyle\sum_{k=1}^\infty \frac{3^{k+2}}{5^{k+1}}\).</p>
+    <div class="step">
+      <div class="step-label">Rewrite to identify a and r</div>
+      <div class="math-display">
+        \[\frac{3^{k+2}}{5^{k+1}} = \frac{9\cdot 3^k}{5\cdot 5^k} = \frac{9}{5}\left(\frac{3}{5}\right)^k\]
+      </div>
+      <p>This is a geometric series with first term \(a = \frac{9}{5}\cdot\frac{3}{5} = \frac{27}{25}\) and ratio \(r=\frac{3}{5}\).</p>
+    </div>
+    <div class="step">
+      <div class="step-label">Apply geometric series formula</div>
+      <p>The sum starts at \(k=1\), so the first term is \(a=\frac{9}{5}\cdot\frac{3}{5}=\frac{27}{25}\) and ratio \(r=\frac{3}{5}\):</p>
+      <div class="math-display">
+        \[S = \frac{a}{1-r} = \frac{27/25}{2/5} = \frac{27}{25}\cdot\frac{5}{2} = \frac{27}{10}\]
+      </div>
+    </div>
+    <div class="key-insight">Answer: <strong>(D) \(\dfrac{27}{10}\)</strong>.</div>
+  </div>
+  <div class="return-link"><a href="#answer-key-a">↑ Return to answer key</a></div>
+</div>
+
+<!-- Q11 -->
+<div class="problem" id="q11">
+  <div class="problem-header">
+    <span class="pnum">11</span>
+    <span class="answer-badge">Answer: C</span>
+    <span class="topic-tag">Volume — Cross Sections (Square)</span>
+  </div>
+  <div class="problem-body">
+    <p>The base is the region bounded by \(y=\sqrt{x}\), \(x=3\), \(x=1\), and the \(x\)-axis. Cross sections perpendicular to the \(x\)-axis are squares. Find the volume.</p>
+    <div class="step">
+      <div class="step-label">Side length of each square</div>
+      <p>At position \(x\), the side length is \(s = \sqrt{x}\), so the cross-sectional area is \(A(x) = (\sqrt{x})^2 = x\).</p>
+    </div>
+    <div class="step">
+      <div class="step-label">Integrate</div>
+      <div class="math-display">
+        \[V = \int_1^3 x\,dx = \left[\frac{x^2}{2}\right]_1^3 = \frac{9}{2}-\frac{1}{2} = 4\]
+      </div>
+    </div>
+    <div class="key-insight">Answer: <strong>(C) 4</strong>.</div>
+  </div>
+  <div class="return-link"><a href="#answer-key-a">↑ Return to answer key</a></div>
+</div>
+
+<!-- Q12 -->
+<div class="problem" id="q12">
+  <div class="problem-header">
+    <span class="pnum">12</span>
+    <span class="answer-badge">Answer: C</span>
+    <span class="topic-tag">Left Riemann Sum</span>
+  </div>
+  <div class="problem-body">
+    <p>Approximate \(\displaystyle\int_{1.2}^{1.8} x^x\,dx\) using a Left Riemann sum with 3 equal subintervals.</p>
+    <div class="step">
+      <div class="step-label">Subinterval width and left endpoints</div>
+      <p>\(\Delta x = \frac{1.8-1.2}{3} = 0.2\). Left endpoints: \(x=1.2,\,1.4,\,1.6\).</p>
+    </div>
+    <div class="step">
+      <div class="step-label">Form the sum</div>
+      <div class="math-display">
+        \[L_3 = 0.2\left(1.2^{1.2}+1.4^{1.4}+1.6^{1.6}\right)\]
+      </div>
+    </div>
+    <div class="key-insight">Answer: <strong>(C)</strong> \(0.2(1.2^{1.2}+1.4^{1.4}+1.6^{1.6})\).</div>
+  </div>
+  <div class="return-link"><a href="#answer-key-a">↑ Return to answer key</a></div>
+</div>
+
+<!-- Q13 -->
+<div class="problem" id="q13">
+  <div class="problem-header">
+    <span class="pnum">13</span>
+    <span class="answer-badge">Answer: C</span>
+    <span class="topic-tag">Optimization — Minimize Surface Area</span>
+  </div>
+  <div class="problem-body">
+    <p>A box with square top and bottom has volume \(k\) cubic inches. Minimize cardboard (total surface area). What is the area of the top?</p>
+    <div class="step">
+      <div class="step-label">Setup</div>
+      <p>Let the side of the square be \(s\) and height \(h\). Then \(V = s^2 h = k\), so \(h = k/s^2\).</p>
+      <p>Surface area: \(SA = 2s^2 + 4sh = 2s^2 + 4s\cdot\frac{k}{s^2} = 2s^2 + \frac{4k}{s}\).</p>
+    </div>
+    <div class="step">
+      <div class="step-label">Minimize</div>
+      <div class="math-display">
+        \[\frac{d(SA)}{ds} = 4s - \frac{4k}{s^2} = 0 \implies s^3 = k \implies s = k^{1/3} = \sqrt[3]{k}\]
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-label">Area of the top</div>
+      <div class="math-display">
+        \[s^2 = \left(\sqrt[3]{k}\right)^2 = \sqrt[3]{k^2}\]
+      </div>
+    </div>
+    <div class="key-insight">Answer: <strong>(C)</strong> \(\sqrt[3]{k^2}\).</div>
+  </div>
+  <div class="return-link"><a href="#answer-key-a">↑ Return to answer key</a></div>
+</div>
+
+<!-- Q14 -->
+<div class="problem" id="q14">
+  <div class="problem-header">
+    <span class="pnum">14</span>
+    <span class="answer-badge">Answer: B</span>
+    <span class="topic-tag">Taylor Polynomial Coefficients</span>
+  </div>
+  <div class="problem-body">
+    <p>Given \(P(x)=a+b(x-1)+c(x-1)^2+d(x-1)^3\) is the degree-3 Taylor polynomial for \(f\) about \(x=1\), with \(f^{(k)}(1)\) as shown in the table. Find \(c+d\).</p>
+    <div class="step">
+      <div class="step-label">Recall Taylor coefficient formulas</div>
+      <div class="math-display">
+        \[c = \frac{f''(1)}{2!} = \frac{-2}{2} = -1 \qquad d = \frac{f'''(1)}{3!} = \frac{3}{6} = \frac{1}{2}\]
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-label">Compute sum</div>
+      <div class="math-display">
+        \[c+d = -1+\frac{1}{2} = -\frac{1}{2}\]
+      </div>
+    </div>
+    <div class="key-insight">Answer: <strong>(B) \(-\tfrac{1}{2}\)</strong>.</div>
+  </div>
+  <div class="return-link"><a href="#answer-key-a">↑ Return to answer key</a></div>
+</div>
+
+<!-- Q15 -->
+<div class="problem" id="q15">
+  <div class="problem-header">
+    <span class="pnum">15</span>
+    <span class="answer-badge">Answer: B</span>
+    <span class="topic-tag">Implicit Differentiation / Second Derivative</span>
+  </div>
+  <div class="problem-body">
+    <p>Given \(\dfrac{dy}{dx}=\dfrac{x+y}{x-y}\), find \(\dfrac{d^2y}{dx^2}\) when \(x=2,\,y=4\).</p>
+    <div class="step">
+      <div class="step-label">Find dy/dx at (2, 4)</div>
+      <div class="math-display">
+        \[\left.\frac{dy}{dx}\right|_{(2,4)} = \frac{2+4}{2-4} = \frac{6}{-2} = -3\]
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-label">Differentiate dy/dx using the quotient rule</div>
+      <div class="math-display">
+        \[\frac{d^2y}{dx^2} = \frac{(1+y')(x-y)-(x+y)(1-y')}{(x-y)^2}\]
+      </div>
+      <p>Substitute \(x=2,\,y=4,\,y'=-3\):</p>
+      <div class="math-display">
+        \[= \frac{(1+(-3))(2-4)-(2+4)(1-(-3))}{(2-4)^2} = \frac{(-2)(-2)-(6)(4)}{4} = \frac{4-24}{4} = \frac{-20}{4} = -5\]
+      </div>
+    </div>
+    <div class="key-insight">Answer: <strong>(B) \(-5\)</strong>.</div>
+  </div>
+  <div class="return-link"><a href="#answer-key-a">↑ Return to answer key</a></div>
+</div>
+
+<!-- Q16 -->
+<div class="problem" id="q16">
+  <div class="problem-header">
+    <span class="pnum">16</span>
+    <span class="answer-badge">Answer: C</span>
+    <span class="topic-tag">Area of Polar Curve — One Loop</span>
+  </div>
+  <div class="problem-body">
+    <p>Find the area enclosed by one loop of \(r=2\sin(6\theta)\).</p>
+    <div class="step">
+      <div class="step-label">Identify one loop</div>
+      <p>One petal of \(r=2\sin(6\theta)\) occurs over an interval where \(r\geq 0\) for half a period: from \(\theta=0\) to \(\theta=\pi/6\).</p>
+    </div>
+    <div class="step">
+      <div class="step-label">Apply polar area formula</div>
+      <div class="math-display">
+        \[A = \frac{1}{2}\int_0^{\pi/6}r^2\,d\theta = \frac{1}{2}\int_0^{\pi/6}4\sin^2(6\theta)\,d\theta = 4\int_0^{\pi/6}\frac{1-\cos(12\theta)}{2}\,d\theta\]
+      </div>
+      <div class="math-display">
+        \[= 2\int_0^{\pi/6}\left(1-\cos(12\theta)\right)d\theta\]
+      </div>
+      <p>The integral over a full loop of \(\cos(n\theta)\) vanishes, leaving:</p>
+      <div class="math-display">
+        \[A = 2\cdot\frac{\pi}{6} = \frac{\pi}{3}\]
+      </div>
+    </div>
+    <div class="key-insight">Answer: <strong>(B)</strong> \(4\displaystyle\int_0^{\pi/6}\sin^2(6\theta)\,d\theta\).</div>
+  </div>
+  <div class="return-link"><a href="#answer-key-a">↑ Return to answer key</a></div>
+</div>
+
+<!-- Q17 -->
+<div class="problem" id="q17">
+  <div class="problem-header">
+    <span class="pnum">17</span>
+    <span class="answer-badge">Answer: A</span>
+    <span class="topic-tag">p-Series / Improper Integral</span>
+  </div>
+  <div class="problem-body">
+    <p>For \(p>0\), \(\displaystyle\int_3^\infty \frac{1}{(x-2)^p}\,dx\) diverges for which values of \(p\)?</p>
+    <div class="step">
+      <div class="step-label">Evaluate the improper integral</div>
+      <p>Let \(u=x-2\), limits from 1 to \(\infty\):</p>
+      <div class="math-display">
+        \[\int_1^\infty u^{-p}\,du\text{ converges iff }p>1\]
+      </div>
+      <p>So the integral <strong>diverges</strong> when \(p\leq 1\), i.e., \(0 < p\leq 1\).</p>
+    </div>
+    <div class="key-insight">Answer: <strong>(A) \(0 < p \leq 1\)</strong>.</div>
+  </div>
+  <div class="return-link"><a href="#answer-key-a">↑ Return to answer key</a></div>
+</div>
+
+<!-- Q18 -->
+<div class="problem" id="q18">
+  <div class="problem-header">
+    <span class="pnum">18</span>
+    <span class="answer-badge">Answer: B</span>
+    <span class="topic-tag">Points of Inflection via FTC</span>
+  </div>
+  <div class="problem-body">
+    <p>Given \(g(x)=\displaystyle\int_0^{x^2}e^{-t^2}\,dt\), find inflection points of \(g\).</p>
+    <div class="step">
+      <div class="step-label">Find g''(x) using the Chain Rule and FTC</div>
+      <div class="math-display">
+        \[g'(x) = e^{-x^4}\cdot 2x\]
+      </div>
+      <div class="math-display">
+        \[g''(x) = e^{-x^4}\cdot 2 + 2x\cdot e^{-x^4}\cdot(-4x^3) = 2e^{-x^4}(1-4x^4)\]
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-label">Set g''(x) = 0 and solve for x</div>
+      <p>Since \(e^{-x^4}>0\) always: \(1-4x^4=0\Rightarrow x^4=\tfrac{1}{4}\Rightarrow x^2=\tfrac{1}{2}\Rightarrow x=\pm\dfrac{1}{\sqrt{2}}=\pm\dfrac{\sqrt{2}}{2}\).</p>
+      <p>\(g''\) changes sign at both, confirming inflection points.</p>
+    </div>
+    <div class="key-insight">Answer: <strong>(C)</strong> \(x=\pm\dfrac{\sqrt{2}}{2}\).</div>
+  </div>
+  <div class="return-link"><a href="#answer-key-a">↑ Return to answer key</a></div>
+</div>
+
+<!-- Q19 -->
+<div class="problem" id="q19">
+  <div class="problem-header">
+    <span class="pnum">19</span>
+    <span class="answer-badge">Answer: D</span>
+    <span class="topic-tag">Arc Length — Parametric</span>
+  </div>
+  <div class="problem-body">
+    <p>Given \(g(x)=\displaystyle\int_1^x\sqrt{9t^2-1}\,dt\), find the arc length of \(g\) on \([2,5]\).</p>
+    <div class="step">
+      <div class="step-label">Find g'(x) via FTC, then apply the arc length formula</div>
+      <p>By FTC: \(g'(x)=\sqrt{9x^2-1}\).</p>
+      <div class="math-display">
+        \[L = \int_2^5\sqrt{1+[g'(x)]^2}\,dx = \int_2^5\sqrt{1+(9x^2-1)}\,dx = \int_2^5\sqrt{9x^2}\,dx = \int_2^5 3x\,dx\]
+      </div>
+    </div>
+    <div class="key-insight">Answer: <strong>(D)</strong> \(\displaystyle\int_2^5 3x\,dx\).</div>
+  </div>
+  <div class="return-link"><a href="#answer-key-a">↑ Return to answer key</a></div>
+</div>
+
+<!-- Q20 -->
+<div class="problem" id="q20">
+  <div class="problem-header">
+    <span class="pnum">20</span>
+    <span class="answer-badge">Answer: A</span>
+    <span class="topic-tag">Maclaurin Series — Substitution</span>
+  </div>
+  <div class="problem-body">
+    <p>Find the Maclaurin series for \(\cos(\sqrt{x})\).</p>
+    <div class="step">
+      <div class="step-label">Recall Maclaurin form</div>
+      <p>The Maclaurin series for \(\cos u\) is:</p>
+      <div class="math-display">\[\cos u = 1-\frac{u^2}{2!}+\frac{u^4}{4!}-\frac{u^6}{6!}+\cdots\]</div>
+      <p>Substitute \(u=\sqrt{x}\), so \(u^2=x\), \(u^4=x^2\), \(u^6=x^3\), \(\ldots\):</p>
+        \[\cos(\sqrt{x}) = 1-\frac{x}{2!}+\frac{x^2}{4!}-\frac{x^3}{6!}+\cdots = 1-\frac{x}{2}+\frac{x^2}{24}-\frac{x^3}{720}+\cdots\]
+      </div>
+    </div>
+    <div class="key-insight">Answer: <strong>(A)</strong> \(1-\dfrac{x}{2!}+\dfrac{x^2}{4!}-\dfrac{x^3}{6!}+\cdots\)</div>
+    <div class="return-link"><a href="#answer-key-a">↑ Return to answer key</a></div>
+</div>
+  <div class="return-link"><a href="#answer-key-a">↑ Return to answer key</a></div>
+</div>
+
+<!-- Q21 -->
+<div class="problem" id="q21">
+  <div class="problem-header">
+    <span class="pnum">21</span>
+    <span class="answer-badge">Answer: C</span>
+    <span class="topic-tag">Radius of Convergence — Ratio Test</span>
+  </div>
+  <div class="problem-body">
+    <p>Find the radius of convergence of \(\displaystyle\sum_{k=1}^\infty\frac{(x+2)^k}{5^k k^2}\).</p>
+    <div class="step">
+      <div class="step-label">Apply Ratio Test</div>
+      <div class="math-display">
+        \[L = \lim_{k\to\infty}\left|\frac{(x+2)^{k+1}}{5^{k+1}(k+1)^2}\cdot\frac{5^k k^2}{(x+2)^k}\right| = \left|\frac{x+2}{5}\right|\lim_{k\to\infty}\frac{k^2}{(k+1)^2} = \frac{|x+2|}{5}\]
+      </div>
+      <p>Converges when \(L < 1\): \(|x+2| < 5\). Radius of convergence \(R=5\).</p>
+    </div>
+    <div class="key-insight">Answer: <strong>(C) 5</strong>.</div>
+  </div>
+  <div class="return-link"><a href="#answer-key-a">↑ Return to answer key</a></div>
+</div>
+
+<!-- Q22 -->
+<div class="problem" id="q22">
+  <div class="problem-header">
+    <span class="pnum">22</span>
+    <span class="answer-badge">Answer: B</span>
+    <span class="topic-tag">Logistic Growth Model</span>
+  </div>
+  <div class="problem-body">
+    <p>Given \(\dfrac{dP}{dt}=0.05P\!\left(1-\dfrac{P}{500}\right)\), which statements are true?</p>
+    <div class="step">
+      <div class="step-label">Statement I: The carrying capacity is 500</div>
+      <p>When \(P=500\): \(\dfrac{dP}{dt}=0.05(500)(0)=0\). Growth stops at \(P=500\). <strong>True. ✓</strong></p>
+    </div>
+    <div class="step">
+      <div class="step-label">Statement II: The maximum daily population growth rate is 5%</div>
+      <p>The intrinsic (per capita) growth rate is \(r=0.05\), or 5%. Maximum total growth occurs at \(P=250\) (half the carrying capacity), but the <em>per capita</em> growth rate of 5% is indeed the maximum rate at which the population grows proportionally. <strong>True. ✓</strong></p>
+    </div>
+    <div class="step">
+      <div class="step-label">Statement III</div>
+      <p>The claim is \(\displaystyle\lim_{P\to 500}\dfrac{dP}{dt}=1\). Evaluating: \(\displaystyle\lim_{P\to 500}\frac{dP}{dt}=0.05(500)\left(1-\frac{500}{500}\right)=0\neq 1\). <strong>False. ✗</strong></p>
+    </div>
+    <div class="key-insight">Statements I and II are true. Answer: <strong>(B) I and II only</strong>.</div>
+  </div>
+  <div class="return-link"><a href="#answer-key-a">↑ Return to answer key</a></div>
+</div>
+
+<!-- Q23 -->
+<div class="problem" id="q23">
+  <div class="problem-header">
+    <span class="pnum">23</span>
+    <span class="answer-badge">Answer: B</span>
+    <span class="topic-tag">Mean Value Theorem / Intermediate Value Theorem</span>
+  </div>
+  <div class="problem-body">
+    <p>\(f\) is continuous on \([0,8]\), differentiable on \((0,8)\), \(f(0)=5\), \(f(8)=-2\). Which must be true?</p>
+    <div class="step">
+      <div class="step-label">Statement I</div>
+      <p>Since \(f(0)=5>0\) and \(f(8)=-2<0\), and \(f\) is continuous, the Intermediate Value Theorem guarantees \(f(c)=0\) for some \(c\in(0,8)\). <strong>True. ✓</strong></p>
+    </div>
+    <div class="step">
+      <div class="step-label">Statement II</div>
+      <p>By the MVT, there exists \(c\) such that \(f'(c)=\dfrac{f(8)-f(0)}{8-0}=\dfrac{-7}{8}\neq 0\). The MVT guarantees a specific nonzero value for \(f'\), but does not guarantee \(f'=0\) anywhere. <strong>Not guaranteed. ✗</strong></p>
+    </div>
+    <div class="step">
+      <div class="step-label">Statement III</div>
+      <p>By the MVT, there exists \(c\) with \(f'(c)=\dfrac{-7}{8}<0\). <strong>True. ✓</strong></p>
+    </div>
+    <div class="key-insight">Answer: <strong>(B) I and III only</strong>.</div>
+  </div>
+  <div class="return-link"><a href="#answer-key-a">↑ Return to answer key</a></div>
+</div>
+
+<!-- Q24 -->
+<div class="problem" id="q24">
+  <div class="problem-header">
+    <span class="pnum">24</span>
+    <span class="answer-badge">Answer: D</span>
+    <span class="topic-tag">Integration by Parts</span>
+  </div>
+  <div class="problem-body">
+    <p>Evaluate \(\displaystyle\int_1^2 x^3\ln x\,dx\).</p>
+    <div class="step">
+      <div class="step-label">Integration by parts</div>
+      <p>The integration by parts formula is:</p>
+      <div class="math-display">\[\int u\,dv = uv - \int v\,du\]</div>
+      <p>For this integral, choose \(u=\ln x\) and \(dv=x^3\,dx\), so that \(du=\tfrac{1}{x}\,dx\) and \(v=\tfrac{x^4}{4}\).</p>
+        \[du=\frac{1}{x}dx,\quad v=\frac{x^4}{4}\]
+      </div>
+      <div class="math-display">
+        \[\int_1^2 x^3\ln x\,dx = \left[\frac{x^4}{4}\ln x\right]_1^2 - \int_1^2\frac{x^4}{4}\cdot\frac{1}{x}\,dx = \left[\frac{x^4}{4}\ln x\right]_1^2 - \frac{1}{4}\int_1^2 x^3\,dx\]
+      </div>
+      <div class="math-display">
+        \[= \frac{16}{4}\ln 2 - 0 - \frac{1}{4}\left[\frac{x^4}{4}\right]_1^2 = 4\ln 2 - \frac{1}{4}\cdot\frac{15}{4} = 4\ln 2 - \frac{15}{16}\]
+      </div>
+    </div>
+    <div class="key-insight">Answer: <strong>(D)</strong> \(4\ln 2-\dfrac{15}{16}\).</div>
+    <div class="return-link"><a href="#answer-key-a">↑ Return to answer key</a></div>
+</div>
+  <div class="return-link"><a href="#answer-key-a">↑ Return to answer key</a></div>
+</div>
+
+<!-- Q25 -->
+<div class="problem" id="q25">
+  <div class="problem-header">
+    <span class="pnum">25</span>
+    <span class="answer-badge">Answer: B</span>
+    <span class="topic-tag">Taylor Series — Coefficient Identification</span>
+  </div>
+  <div class="problem-body">
+    <p>Find the coefficient of \(x^3\) in the Taylor series for \(f(x)=e^x\sin x\) about \(x=0\).</p>
+    <div class="step">
+      <div class="step-label">Collect third-degree terms</div>
+      <div class="math-display">
+        \[e^x = 1+x+\frac{x^2}{2}+\frac{x^3}{6}+\cdots \qquad \sin x = x-\frac{x^3}{6}+\cdots\]
+      </div>
+      <p>The terms in the product \(e^x\sin x\) that contribute to \(x^3\) are:</p>
+      <div class="math-display">
+        \[(1)\!\left(-\frac{x^3}{6}\right) + \left(\frac{x^2}{2}\right)\!(x) = -\frac{x^3}{6}+\frac{x^3}{2}\]
+      </div>
+      <div class="math-display">
+        \[\text{coefficient of }x^3 = -\frac{1}{6}+\frac{1}{2} = \frac{1}{3}\]
+      </div>
+    </div>
+    <div class="key-insight">Answer: <strong>(B) \(\dfrac{1}{3}\)</strong>.</div>
+  </div>
+  <div class="return-link"><a href="#answer-key-a">↑ Return to answer key</a></div>
+</div>
+
+<!-- Q26 -->
+<div class="problem" id="q26">
+  <div class="problem-header">
+    <span class="pnum">26</span>
+    <span class="answer-badge">Answer: C</span>
+    <span class="topic-tag">Series Convergence — Multiple Tests</span>
+  </div>
+  <div class="problem-body">
+    <p>Which of series I, II, III converge?</p>
+    <div class="step">
+      <div class="step-label">Series I</div>
+      <p>\(\displaystyle\sum_{k=1}^\infty\left(\frac{\pi}{3}\right)^k\): geometric series with \(r=\pi/3>1\). <strong>Diverges.</strong></p>
+    </div>
+    <div class="step">
+      <div class="step-label">Series II</div>
+      <p>\(\displaystyle\sum_{k=1}^\infty\frac{(-1)^k}{\sqrt{k}}\): by the Alternating Series Test, \(1/\sqrt{k}\) is decreasing and \(\to 0\). <strong>Converges</strong> (conditionally).</p>
+    </div>
+    <div class="step">
+      <div class="step-label">Series III</div>
+      <p>\(\displaystyle\sum_{k=1}^\infty\frac{k}{2k+1}\): by the Divergence Test, \(\displaystyle\lim_{k\to\infty}\frac{k}{2k+1}=\frac{1}{2}\neq 0\). <strong>Diverges.</strong></p>
+    </div>
+    <div class="key-insight">Only II converges. Answer: <strong>(C) II only</strong>.</div>
+  </div>
+  <div class="return-link"><a href="#answer-key-a">↑ Return to answer key</a></div>
+</div>
+
+<!-- Q27 -->
+<div class="problem" id="q27">
+  <div class="problem-header">
+    <span class="pnum">27</span>
+    <span class="answer-badge">Answer: A</span>
+    <span class="topic-tag">Parametric — Tangent Line</span>
+  </div>
+  <div class="problem-body">
+    <p>Given \(x=t+4\sqrt{t},\;y=4t^2-2t\), find the tangent line at \(t=1\).</p>
+    <div class="step">
+      <div class="step-label">Find dx/dt and dy/dt at t = 1</div>
+      <div class="math-display">
+        \[\frac{dx}{dt}=1+\frac{2}{\sqrt{t}}\Big|_{t=1}=1+2=3 \qquad \frac{dy}{dt}=8t-2\Big|_{t=1}=6\]
+      </div>
+      <div class="math-display">
+        \[\frac{dy}{dx}=\frac{6}{3}=2\]
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-label">Find the point and write the tangent line</div>
+      <p>\(x=1+4=5,\quad y=4-2=2\).</p>
+      <div class="math-display">
+        \[y-2=2(x-5)\implies y=2x-8\]
+      </div>
+    </div>
+    <div class="key-insight">Answer: <strong>(A)</strong> \(y=2x-8\).</div>
+  </div>
+  <div class="return-link"><a href="#answer-key-a">↑ Return to answer key</a></div>
+</div>
+
+<!-- Q28 -->
+<div class="problem" id="q28">
+  <div class="problem-header">
+    <span class="pnum">28</span>
+    <span class="answer-badge">Answer: A</span>
+    <span class="topic-tag">Differential Equations — Exponential Growth</span>
+  </div>
+  <div class="problem-body">
+    <p>If \(\dfrac{dy}{dt}=ky^2\), which could be \(y\)?</p>
+    <div class="step">
+      <div class="step-label">Separate variables and solve</div>
+      <div class="math-display">
+        \[\frac{dy}{y^2}=k\,dt \implies -\frac{1}{y}=kt+C \implies y = \frac{-1}{kt+C}\]
+      </div>
+      <p>This is a rational function of \(t\), not an exponential. Setting \(C=3\) gives choice (A).</p>
+    </div>
+    <div class="step">
+      <div class="step-label">Verify choice (A)</div>
+      <p>For \(y=\dfrac{-1}{3+kt}\): \(\quad\dfrac{dy}{dt}=\dfrac{k}{(3+kt)^2}=k\cdot\left(\dfrac{-1}{3+kt}\right)^2=ky^2\). ✓</p>
+    </div>
+    <div class="key-insight">Answer: <strong>(A)</strong> \(y=\dfrac{-1}{3+kt}\).</div>
+  </div>
+  <div class="return-link"><a href="#answer-key-a">↑ Return to answer key</a></div>
+</div>
+
+<!-- Q29 -->
+<div class="problem" id="q29">
+  <div class="problem-header">
+    <span class="pnum">29</span>
+    <span class="answer-badge">Answer: A</span>
+    <span class="topic-tag">Analyzing Derivatives from a Graph</span>
+  </div>
+  <div class="problem-body">
+    <p>Given the graph of \(f\), where \(g(x)=f(x)+3\) and \(h(x)=\dfrac{f(x)}{g(x)}\), determine the sign of \(h'(1)\).</p>
+    <div class="step">
+      <div class="step-label">Read values from the graph at x = 1</div>
+      <p>From the graph: the tangent line to \(f\) at \(x=1\) has a negative slope, so \(f'(1)<0\). Also, \(f(1)>0\) and \(g(1)=f(1)+3>0\).</p>
+    </div>
+    <div class="step">
+      <div class="step-label">Apply the quotient rule</div>
+      <div class="math-display">
+        \[h'(x)=\frac{f'(x)\cdot g(x)-f(x)\cdot g'(x)}{[g(x)]^2}\]
+      </div>
+      <p>Since \(f'(1)<0\), \(g(1)>0\), \(f(1)>0\), and \(g'(1)=f'(1)<0\), the numerator is negative minus negative. The dominant term \(f'(1)\cdot g(1)\) is negative, making the overall numerator negative. The denominator \([g(1)]^2>0\) always.</p>
+    </div>
+    <div class="key-insight">\(h'(1)<0\). Answer: <strong>(A)</strong>.</div>
+  </div>
+  <div class="return-link"><a href="#answer-key-a">↑ Return to answer key</a></div>
+</div>
+
+<!-- Q30 -->
+<div class="problem" id="q30">
+  <div class="problem-header">
+    <span class="pnum">30</span>
+    <span class="answer-badge">Answer: D</span>
+    <span class="topic-tag">Slope Fields — Identifying the DE</span>
+  </div>
+  <div class="problem-body">
+    <p>Match the slope field to the correct differential equation.</p>
+    <div class="step">
+      <div class="step-label">Key observation</div>
+      <p>The slopes in the field are always greater than or equal to zero — no negative slopes appear anywhere. This rules out any equation whose right-hand side can be negative.</p>
+      <p>For \(\dfrac{dy}{dt}=t^2\): since \(t^2\geq 0\) for all \(t\), all slopes are non-negative, consistent with the field. The slopes are zero along the vertical line \(t=0\) and increase symmetrically as \(|t|\) grows, independent of \(y\) — also consistent with the field showing constant slope along each vertical line.</p>
+    </div>
+    <div class="key-insight">Answer: <strong>(B)</strong> \(\dfrac{dy}{dt}=t^2\).</div>
+  </div>
+  <div class="return-link"><a href="#answer-key-a">↑ Return to answer key</a></div>
+</div>
+
+<div class="ornament">· · ·</div>
+
+<!-- ═══════════════════════════════════════════
+     SECTION 1 · MULTIPLE CHOICE · PART B
+════════════════════════════════════════════ -->
+<div class="section-header" id="mc-b">
+  <h2>Section 1 · Multiple Choice, Part B</h2>
+  <div class="note">Graphing calculator required &nbsp;·&nbsp; Questions 31–45</div>
+</div>
+
+<div class="answer-key" id="answer-key-b">
+  <a href="#q31" class="ak-link"><div class="ak-item"><div class="qnum">Q31</div><div class="ans">D</div></div></a>
+  <a href="#q32" class="ak-link"><div class="ak-item"><div class="qnum">Q32</div><div class="ans">C</div></div></a>
+  <a href="#q33" class="ak-link"><div class="ak-item"><div class="qnum">Q33</div><div class="ans">C</div></div></a>
+  <a href="#q34" class="ak-link"><div class="ak-item"><div class="qnum">Q34</div><div class="ans">C</div></div></a>
+  <a href="#q35" class="ak-link"><div class="ak-item"><div class="qnum">Q35</div><div class="ans">B</div></div></a>
+  <a href="#q36" class="ak-link"><div class="ak-item"><div class="qnum">Q36</div><div class="ans">C</div></div></a>
+  <a href="#q37" class="ak-link"><div class="ak-item"><div class="qnum">Q37</div><div class="ans">B</div></div></a>
+  <a href="#q38" class="ak-link"><div class="ak-item"><div class="qnum">Q38</div><div class="ans">A</div></div></a>
+  <a href="#q39" class="ak-link"><div class="ak-item"><div class="qnum">Q39</div><div class="ans">C</div></div></a>
+  <a href="#q40" class="ak-link"><div class="ak-item"><div class="qnum">Q40</div><div class="ans">C</div></div></a>
+  <a href="#q41" class="ak-link"><div class="ak-item"><div class="qnum">Q41</div><div class="ans">A</div></div></a>
+  <a href="#q42" class="ak-link"><div class="ak-item"><div class="qnum">Q42</div><div class="ans">C</div></div></a>
+  <a href="#q43" class="ak-link"><div class="ak-item"><div class="qnum">Q43</div><div class="ans">D</div></div></a>
+  <a href="#q44" class="ak-link"><div class="ak-item"><div class="qnum">Q44</div><div class="ans">C</div></div></a>
+  <a href="#q45" class="ak-link"><div class="ak-item"><div class="qnum">Q45</div><div class="ans">D</div></div></a>
+</div>
+
+<!-- Q31 -->
+<div class="problem" id="q31">
+  <div class="problem-header">
+    <span class="pnum">31</span>
+    <span class="answer-badge">Answer: D</span>
+    <span class="topic-tag">Comparison Test / Squeeze Theorem for Series</span>
+  </div>
+  <div class="problem-body">
+    <p>Given \(0 < a_n < \dfrac{2n}{n+1}\), which statement must be true?</p>
+    <div class="step">
+      <div class="step-label">Analyze the bound</div>
+      <p>\(\dfrac{2n}{n+1}\to 2\neq 0\), so the bounding series \(\sum\dfrac{2n}{n+1}\) <strong>diverges</strong> (terms \(\not\to 0\)).</p>
+      <p>Since \(a_n\) is bounded above by a divergent sequence's terms — but this tells us nothing definitive about \(\sum a_n\). The comparison test requires a bound by a convergent series to conclude convergence.</p>
+    </div>
+    <div class="key-insight">Answer: <strong>(D)</strong> \(\sum\dfrac{2n}{n+1}\) diverges, but \(\sum a_n\) may or may not converge.</div>
+  </div>
+  <div class="return-link"><a href="#answer-key-b">↑ Return to answer key</a></div>
+</div>
+
+<!-- Q32 -->
+<div class="problem" id="q32">
+  <div class="problem-header">
+    <span class="pnum">32</span>
+    <span class="answer-badge">Answer: C</span>
+    <span class="topic-tag">Accumulation / Rate Problem</span>
+  </div>
+  <div class="problem-body">
+    <p>Sand is poured at rate \(r(t)=\dfrac{25t}{t+1}\) ft³/min. Initial amount: 100 ft³. Amount after 30 minutes?</p>
+    <div class="step">
+      <div class="step-label">Integrate the rate</div>
+      <div class="math-display">
+        \[\int_0^{30}\frac{25t}{t+1}\,dt = 25\int_0^{30}\left(1-\frac{1}{t+1}\right)dt = 25\left[t-\ln(t+1)\right]_0^{30}\]
+      </div>
+      <div class="math-display">
+        \[= 25\left(30-\ln 31\right) \approx 25(30-3.434) \approx 25(26.566)\approx 664.1\]
+      </div>
+      <p>Total: \(100+664\approx 764\).</p>
+    </div>
+    <div class="key-insight">Answer: <strong>(C) 764</strong>.</div>
+  </div>
+  <div class="return-link"><a href="#answer-key-b">↑ Return to answer key</a></div>
+</div>
+
+<!-- Q33 -->
+<div class="problem" id="q33">
+  <div class="problem-header">
+    <span class="pnum">33</span>
+    <span class="answer-badge">Answer: C</span>
+    <span class="topic-tag">Area Between Curves (Calculator)</span>
+  </div>
+  <div class="problem-body">
+    <p>Find the area bounded by \(y=e^{-x^2}\) and \(8y-x=4\).</p>
+    <div class="step">
+      <div class="step-label">Rewrite the line and find intersections numerically</div>
+      <p>Line: \(y=\tfrac{x+4}{8}\). Intersect with \(e^{-x^2}\) numerically (calculator): intersections near \(x\approx -0.892\) and \(x\approx 0.658\).</p>
+    </div>
+    <div class="step">
+      <div class="step-label">Integrate</div>
+      <div class="math-display">
+        \[A=\int_{x_1}^{x_2}\left(e^{-x^2}-\frac{x+4}{8}\right)dx\approx 0.530\]
+      </div>
+    </div>
+    <div class="key-insight">Answer: <strong>(C) 0.530</strong>.</div>
+  </div>
+  <div class="return-link"><a href="#answer-key-b">↑ Return to answer key</a></div>
+</div>
+
+<!-- Q34 -->
+<div class="problem" id="q34">
+  <div class="problem-header">
+    <span class="pnum">34</span>
+    <span class="answer-badge">Answer: C</span>
+    <span class="topic-tag">Average Velocity vs. Speed (Calculator)</span>
+  </div>
+  <div class="problem-body">
+    <p>Position: \(P(t)=2+\displaystyle\int_0^t\ln(u^2+1)\,du\). Find \(\dfrac{a}{b}\) where \(a\) = average velocity on \([1,5]\), \(b\) = speed at \(t=3\).</p>
+    <div class="step">
+      <div class="step-label">Average velocity</div>
+      <p>By the FTC, \(P'(t)=\ln(t^2+1)\), so average velocity on \([1,5]\) is:</p>
+      <div class="math-display">
+        \[a = \frac{P(5)-P(1)}{5-1} = \frac{1}{4}\int_1^5\ln(u^2+1)\,du \approx \frac{9.107}{4} \approx 2.277\]
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-label">Speed at t = 3</div>
+      <p>Speed equals \(|P'(3)|=|\ln(3^2+1)|=\ln(10)\approx 2.303\).</p>
+    </div>
+    <div class="step">
+      <div class="step-label">Compute the ratio</div>
+      <div class="math-display">
+        \[\frac{a}{b} = \frac{2.277}{2.303} \approx 0.953\]
+      </div>
+    </div>
+    <div class="key-insight">Answer: <strong>(C) 0.953</strong>.</div>
+  </div>
+  <div class="return-link"><a href="#answer-key-b">↑ Return to answer key</a></div>
+</div>
+
+<!-- Q35 -->
+<div class="problem" id="q35">
+  <div class="problem-header">
+    <span class="pnum">35</span>
+    <span class="answer-badge">Answer: B</span>
+    <span class="topic-tag">Euler's Method</span>
+  </div>
+  <div class="problem-body">
+    <p>Use Euler's method with two equal steps to approximate \(f(2.5)\) given the table.</p>
+    <div class="step">
+      <div class="step-label">Step size: Δx = 0.25</div>
+      <p><strong>Step 1:</strong> \(f(2.25)\approx f(2)+f'(2)\cdot 0.25 = 10+(-0.4)(0.25)=10-0.1=9.9\).</p>
+      <p><strong>Step 2:</strong> \(f(2.5)\approx f(2.25)+f'(2.25)\cdot 0.25 = 9.9+(-0.2)(0.25)=9.9-0.05=9.85\).</p>
+    </div>
+    <div class="key-insight">Answer: <strong>(B) 9.85</strong>.</div>
+  </div>
+  <div class="return-link"><a href="#answer-key-b">↑ Return to answer key</a></div>
+</div>
+
+<!-- Q36 -->
+<div class="problem" id="q36">
+  <div class="problem-header">
+    <span class="pnum">36</span>
+    <span class="answer-badge">Answer: C</span>
+    <span class="topic-tag">Integration by Parts with Table / FTC</span>
+  </div>
+  <div class="problem-body">
+    <p>Given \(G(x)=\displaystyle\int_0^x g(t)\,dt\), find \(\displaystyle\int_1^3 x^2 g''(x)\,dx\) using the table below.</p>
+    <table style="border-collapse:collapse; margin: 12px 0 16px; font-size:0.95rem;">
+      <tr style="border-bottom: 2px solid var(--rule);">
+        <th style="padding:6px 20px; text-align:center; color:var(--muted);">x</th>
+        <th style="padding:6px 20px; text-align:center; color:var(--muted);">1</th>
+        <th style="padding:6px 20px; text-align:center; color:var(--muted);">3</th>
+      </tr>
+      <tr><td style="padding:5px 20px; text-align:center;">\(G(x)\)</td><td style="padding:5px 20px; text-align:center;">3</td><td style="padding:5px 20px; text-align:center;">4</td></tr>
+      <tr><td style="padding:5px 20px; text-align:center;">\(G'(x)\)</td><td style="padding:5px 20px; text-align:center;">6</td><td style="padding:5px 20px; text-align:center;">2</td></tr>
+      <tr><td style="padding:5px 20px; text-align:center;">\(G''(x)\)</td><td style="padding:5px 20px; text-align:center;">5</td><td style="padding:5px 20px; text-align:center;">1</td></tr>
+    </table>
+    <p>Since \(G(x)=\int_0^x g(t)\,dt\), we have \(G'(x)=g(x)\) and \(G''(x)=g'(x)\). So the table gives us: \(g(1)=6,\; g(3)=2,\; g'(1)=5,\; g'(3)=1,\; G(1)=3,\; G(3)=4\).</p>
+    <div class="step">
+      <div class="step-label">Integration by parts — first application</div>
+      <p>Let \(u=x^2,\; dv=g''(x)\,dx\), so \(du=2x\,dx,\; v=g'(x)\):</p>
+      <div class="math-display">
+        \[\int_1^3 x^2g''(x)\,dx = \Big[x^2g'(x)\Big]_1^3-\int_1^3 2x\,g'(x)\,dx\]
+      </div>
+      <div class="math-display">
+        \[= \big(9\cdot g'(3)-1\cdot g'(1)\big) - \int_1^3 2x\,g'(x)\,dx = (9\cdot1-1\cdot5)-\int_1^3 2x\,g'(x)\,dx = 4-\int_1^3 2x\,g'(x)\,dx\]
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-label">Integration by parts — second application</div>
+      <p>For \(\int_1^3 2x\,g'(x)\,dx\): let \(u=2x,\; dv=g'(x)\,dx\), so \(du=2\,dx,\; v=g(x)\):</p>
+      <div class="math-display">
+        \[\int_1^3 2x\,g'(x)\,dx = \Big[2x\,g(x)\Big]_1^3 - \int_1^3 2g(x)\,dx\]
+      </div>
+      <div class="math-display">
+        \[= (6\cdot g(3)-2\cdot g(1)) - 2\int_1^3 g(x)\,dx = (6\cdot2-2\cdot6) - 2\int_1^3 g(x)\,dx = 0 - 2\int_1^3 g(x)\,dx\]
+      </div>
+      <p>Since \(G'(x)=g(x)\), we have \(\displaystyle\int_1^3 g(x)\,dx = G(3)-G(1)=4-3=1\).</p>
+      <div class="math-display">
+        \[\int_1^3 2x\,g'(x)\,dx = 0-2(1) = -2\]
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-label">Combine</div>
+      <div class="math-display">
+        \[\int_1^3 x^2g''(x)\,dx = 4-(-2) = 6\]
+      </div>
+    </div>
+    <div class="key-insight">Answer: <strong>(C) 6</strong>.</div>
+  </div>
+  <div class="return-link"><a href="#answer-key-b">↑ Return to answer key</a></div>
+</div>
+
+<!-- Q37 -->
+<div class="problem" id="q37">
+  <div class="problem-header">
+    <span class="pnum">37</span>
+    <span class="answer-badge">Answer: B</span>
+    <span class="topic-tag">Mean Value Theorem — Slope of Tangent</span>
+  </div>
+  <div class="problem-body">
+    <p>From the table, \(x=3.2\) satisfies MVT on \([1,5]\). Find the slope of the tangent at \(x=3.2\).</p>
+    <div class="step">
+      <div class="step-label">Apply MVT</div>
+      <div class="math-display">
+        \[f'(c) = \frac{f(5)-f(1)}{5-1} = \frac{7-29}{4} = \frac{-22}{4} = -\frac{11}{2}\]
+      </div>
+    </div>
+    <div class="key-insight">Answer: <strong>(B)</strong> \(-\dfrac{11}{2}\). The tangent slope at \(x=3.2\) equals the average rate of change.</div>
+  </div>
+  <div class="return-link"><a href="#answer-key-b">↑ Return to answer key</a></div>
+</div>
+
+<!-- Q38 -->
+<div class="problem" id="q38">
+  <div class="problem-header">
+    <span class="pnum">38</span>
+    <span class="answer-badge">Answer: A</span>
+    <span class="topic-tag">Logistic Growth — Model Identification</span>
+  </div>
+  <div class="problem-body">
+    <p>From the figure, the logistic model has carrying capacity \(\approx 500\) and an inflection point at \(P\approx 250\).</p>
+    <div class="step">
+      <div class="step-label">Standard logistic form</div>
+      <p>The logistic DE: \(\dfrac{dP}{dt}=rP\!\left(1-\dfrac{P}{K}\right)=rP-\dfrac{r}{K}P^2\).</p>
+      <p>With \(K=500\) and at the inflection point \(P=250\), check (A): \(2P-0.004P^2 = P(2-0.004P)\). At \(P=500\): \(500(2-2)=0\). ✓ Carrying capacity 500. ✓</p>
+    </div>
+    <div class="key-insight">Answer: <strong>(A)</strong> \(\dfrac{dP}{dt}=2P-0.004P^2\).</div>
+  </div>
+  <div class="return-link"><a href="#answer-key-b">↑ Return to answer key</a></div>
+</div>
+
+<!-- Q39 -->
+<div class="problem" id="q39">
+  <div class="problem-header">
+    <span class="pnum">39</span>
+    <span class="answer-badge">Answer: C</span>
+    <span class="topic-tag">Volume of Revolution (Calculator)</span>
+  </div>
+  <div class="problem-body">
+    <p>Revolve \(y=\sqrt{x}+\dfrac{3\cos x}{x}\) about the \(x\)-axis from \(x=\pi/2\) to \(x=3\pi\). Find the volume.</p>
+    <div class="step">
+      <div class="step-label">Disk/Washer method</div>
+      <div class="math-display">
+        \[V=\pi\int_{\pi/2}^{3\pi}\left(\sqrt{x}+\frac{3\cos x}{x}\right)^2dx\]
+      </div>
+      <p>Using a graphing calculator: \(V\approx 129.183\).</p>
+    </div>
+    <div class="key-insight">Answer: <strong>(C) 129.183</strong>.</div>
+  </div>
+  <div class="return-link"><a href="#answer-key-b">↑ Return to answer key</a></div>
+</div>
+
+<!-- Q40 -->
+<div class="problem" id="q40">
+  <div class="problem-header">
+    <span class="pnum">40</span>
+    <span class="answer-badge">Answer: C</span>
+    <span class="topic-tag">Parametric Speed</span>
+  </div>
+  <div class="problem-body">
+    <p>Given \(x(t)=t^2+3t,\;y(t)=2t^3-21t^2+60t\), find the speed at \(t=3\).</p>
+    <div class="step">
+      <div class="step-label">Compute derivatives at t = 3</div>
+      <div class="math-display">
+        \[x'(t)=2t+3 \implies x'(3)=6+3=9\]
+      </div>
+      <div class="math-display">
+        \[y'(t)=6t^2-42t+60 \implies y'(3)=54-126+60=-12\]
+      </div>
+      <div class="math-display">
+        \[\text{Speed}=\sqrt{9^2+(-12)^2}=\sqrt{81+144}=\sqrt{225}=15\]
+      </div>
+    </div>
+    <div class="key-insight">Answer: <strong>(C) 15</strong>.</div>
+  </div>
+  <div class="return-link"><a href="#answer-key-b">↑ Return to answer key</a></div>
+</div>
+
+<!-- Q41 -->
+<div class="problem" id="q41">
+  <div class="problem-header">
+    <span class="pnum">41</span>
+    <span class="answer-badge">Answer: A</span>
+    <span class="topic-tag">Taylor Polynomial Approximation of an Integral</span>
+  </div>
+  <div class="problem-body">
+    <p>Use the second-degree Taylor polynomial for \(G(x)=\displaystyle\int_0^x g(t)\,dt\) about \(x=1\) to approximate \(\displaystyle\int_0^{0.8}g(t)\,dt\).</p>
+    <div class="step">
+      <div class="step-label">Build the Taylor polynomial for G</div>
+      <p>From the table: \(G(1)=3,\;G'(1)=g(1)=6,\;G''(1)=g'(1)=5\).</p>
+      <div class="math-display">
+        \[G(x)\approx 3+6(x-1)+\frac{5}{2}(x-1)^2\]
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-label">Evaluate at x = 0.8</div>
+      <p>Since \(G(0)=\displaystyle\int_0^0 g(t)\,dt=0\), we have \(\displaystyle\int_0^{0.8}g(t)\,dt = G(0.8)-G(0)=G(0.8)\).</p>
+      <div class="math-display">
+        \[G(0.8)\approx 3+6(0.8-1)+\frac{5}{2}(0.8-1)^2 = 3+6(-0.2)+\frac{5}{2}(0.04) = 3-1.2+0.1 = 1.9\]
+      </div>
+    </div>
+    <div class="key-insight">Answer: <strong>(A) 1.9</strong>.</div>
+  </div>
+  <div class="return-link"><a href="#answer-key-b">↑ Return to answer key</a></div>
+</div>
+
+<!-- Q42 -->
+<div class="problem" id="q42">
+  <div class="problem-header">
+    <span class="pnum">42</span>
+    <span class="answer-badge">Answer: C</span>
+    <span class="topic-tag">Total Distance (Calculator) — Particle Motion</span>
+  </div>
+  <div class="problem-body">
+    <p>Velocity \(v(t)=\left(\dfrac{5}{t-10}\right)\sin(2\pi\sqrt{t})\). Total distance on \([0,9]\).</p>
+    <div class="step">
+      <div class="step-label">Integrate |v(t)|</div>
+      <div class="math-display">
+        \[d = \int_0^9 |v(t)|\,dt\approx 7.006\]
+      </div>
+    </div>
+    <div class="key-insight">Answer: <strong>(C) 7.006</strong>. Requires calculator integration of \(|v(t)|\).</div>
+  </div>
+  <div class="return-link"><a href="#answer-key-b">↑ Return to answer key</a></div>
+</div>
+
+<!-- Q43 -->
+<div class="problem" id="q43">
+  <div class="problem-header">
+    <span class="pnum">43</span>
+    <span class="answer-badge">Answer: D</span>
+    <span class="topic-tag">Speed Increasing — Sign Analysis</span>
+  </div>
+  <div class="problem-body">
+    <p>Speed of particle is increasing when \(v(t)\) and \(v'(t)\) have the <em>same sign</em>.</p>
+    <div class="step">
+      <div class="step-label">Check each given time from the table</div>
+      <p><strong>\(t=2\):</strong> \(v=-5,\,v'=-3\). Both negative → speed increasing. ✓</p>
+      <p><strong>\(t=4\):</strong> \(v=6,\,v'=-8\). Opposite signs → speed decreasing. ✗</p>
+      <p><strong>\(t=6\):</strong> \(v=-9,\,v'=6\). Opposite signs → speed decreasing. ✗</p>
+      <p><strong>\(t=8\):</strong> \(v=18,\,v'=10\). Both positive → speed increasing. ✓</p>
+    </div>
+    <div class="key-insight">Answer: <strong>(D) 2 and 8</strong>. Speed increases when \(v(t)\) and \(v'(t)\) share the same sign.</div>
+  </div>
+  <div class="return-link"><a href="#answer-key-b">↑ Return to answer key</a></div>
+</div>
+
+<!-- Q44 -->
+<div class="problem" id="q44">
+  <div class="problem-header">
+    <span class="pnum">44</span>
+    <span class="answer-badge">Answer: C</span>
+    <span class="topic-tag">Related Rates — Cone</span>
+  </div>
+  <div class="problem-body">
+    <p>Sand on a conical pile at 25 ft³/min. Radius = half of height. Find \(dr/dt\) when \(h=10\) ft.</p>
+    <div class="step">
+      <div class="step-label">Express volume in terms of r alone</div>
+      <p>Since \(r=h/2\), we have \(h=2r\). \(V=\tfrac{1}{3}\pi r^2 h=\tfrac{1}{3}\pi r^2(2r)=\tfrac{2\pi}{3}r^3\).</p>
+    </div>
+    <div class="step">
+      <div class="step-label">Differentiate</div>
+      <div class="math-display">
+        \[\frac{dV}{dt}=2\pi r^2\frac{dr}{dt}\]
+      </div>
+      <p>When \(h=10\Rightarrow r=5\):</p>
+      <div class="math-display">
+        \[25=2\pi(25)\frac{dr}{dt}\implies \frac{dr}{dt}=\frac{25}{50\pi}=\frac{1}{2\pi}\approx 0.159\]
+      </div>
+    </div>
+    <div class="key-insight">Answer: <strong>(C) 0.159</strong>.</div>
+  </div>
+  <div class="return-link"><a href="#answer-key-b">↑ Return to answer key</a></div>
+</div>
+
+<!-- Q45 -->
+<div class="problem" id="q45">
+  <div class="problem-header">
+    <span class="pnum">45</span>
+    <span class="answer-badge">Answer: D</span>
+    <span class="topic-tag">Extreme Value Theorem</span>
+  </div>
+  <div class="problem-body">
+    <p>\(f\) continuous on \([1,3]\), \(f(1)=-2\), \(f(3)=4\). What does EVT guarantee?</p>
+    <div class="step">
+      <div class="step-label">Recall EVT</div>
+      <p>The Extreme Value Theorem guarantees that a continuous function on a closed interval attains its absolute maximum and minimum values on that interval.</p>
+      <p>Since \(f(1)=-2\) and \(f(3)=4\), and \(f\) is continuous, \(f\) attains an absolute max \(\geq 4\) and an absolute min \(\leq -2\). The EVT guarantees the function attains these extremes — specifically that the absolute max value \(f(c)\geq f(3)=4\) for all \(x\in[1,3]\).</p>
+    </div>
+    <div class="key-insight">Answer: <strong>(D)</strong> \(f\) attains an absolute maximum value \(f(c)\geq f(x)\) for all \(x\in[1,3]\).</div>
+  </div>
+  <div class="return-link"><a href="#answer-key-b">↑ Return to answer key</a></div>
+</div>
+
+<div class="ornament">· · ·</div>
+
+<!-- ═══════════════════════════════════════════
+     SECTION 2 · FREE RESPONSE · PART A
+════════════════════════════════════════════ -->
+<div class="section-header" id="fr-a">
+  <h2>Section 2 · Free Response, Part A</h2>
+  <div class="note">Graphing calculator required &nbsp;·&nbsp; Problems 1–2</div>
+</div>
+
+<!-- FR 1 -->
+<div class="problem" id="fr1">
+  <div class="problem-header">
+    <span class="pnum">FR 1</span>
+    <span class="topic-tag">Polar Curves — Area, Maximum Distance, Rate of Change</span>
+  </div>
+  <div class="problem-body">
+    <p>\(r_1(\theta)=2+3\sin\theta+4\cos\theta,\quad r_2(\theta)=2+6\cos\theta\) on \(0\leq\theta\leq\pi/2\). Let \(S\) be the shaded region bounded by the two curves, the \(x\)-axis, and the \(y\)-axis. Curves intersect at point \(P\).</p>
+
+    <div class="fr-part">
+      <div class="fr-part-label">(a) Area of \(S\)</div>
+      <p>Find the angle \(\theta_P\) at which \(r_1=r_2\). Setting equal:</p>
+      <div class="math-display">
+        \[2+3\sin\theta+4\cos\theta = 2+6\cos\theta \implies 3\sin\theta = 2\cos\theta \implies \tan\theta = \tfrac{2}{3}\]
+      </div>
+      <div class="math-display">
+        \[\theta_P = \arctan\!\left(\tfrac{2}{3}\right)\approx 0.588\]
+      </div>
+      <p>The region \(S\) is bounded by \(r_1\) from \(\theta=0\) to \(\theta_P\) and by \(r_2\) from \(\theta_P\) to \(\pi/2\):</p>
+      <div class="math-display">
+        \[A = \frac{1}{2}\int_0^{\theta_P}\left[r_1(\theta)\right]^2 d\theta + \frac{1}{2}\int_{\theta_P}^{\pi/2}\left[r_2(\theta)\right]^2 d\theta\]
+      </div>
+    </div>
+
+    <div class="fr-part">
+      <div class="fr-part-label">(b) Point on \(r_1\) farthest from the origin</div>
+      <p>The distance from the origin in polar coordinates is simply \(r_1(\theta)\). Maximize:</p>
+      <div class="math-display">
+        \[\frac{dr_1}{d\theta} = 3\cos\theta - 4\sin\theta = 0 \implies \tan\theta = \frac{3}{4} \implies \theta = \arctan\!\left(\tfrac{3}{4}\right)\approx 0.6435\]
+      </div>
+      <p>Verify this is a maximum: \(r_1''(\theta^*) < 0\). ✓</p>
+      <p>At \(\theta=\arctan(3/4)\): \(\sin\theta=\tfrac{3}{5}\) and \(\cos\theta=\tfrac{4}{5}\) (from the 3-4-5 right triangle).</p>
+      <div class="math-display">
+        \[r_1 = 2+3\cdot\tfrac{3}{5}+4\cdot\tfrac{4}{5} = 2+\tfrac{9}{5}+\tfrac{16}{5} = 2+5 = 7\]
+      </div>
+      <p>The maximum distance is 7, occurring at \(\theta=\arctan(3/4)\).</p>
+    </div>
+
+    <div class="fr-part">
+      <div class="fr-part-label">(c) Rate of change of radial distance between curves at \(\theta=\pi/6\)</div>
+      <p>The radial distance between the two curves is \(D(\theta)=r_2(\theta)-r_1(\theta)=2\cos\theta-3\sin\theta\), since \(r_2 > r_1\) on this interval.</p>
+      <p>Given \(\dfrac{d\theta}{dt}=\dfrac{1}{3}\):</p>
+      <div class="math-display">
+        \[\frac{dD}{dt} = \frac{dD}{d\theta}\cdot\frac{d\theta}{dt} = (-2\sin\theta-3\cos\theta)\cdot\frac{1}{3}\]
+      </div>
+      <p>Substituting \(\theta=\pi/6\), \(\sin\tfrac{\pi}{6}=\tfrac{1}{2}\), \(\cos\tfrac{\pi}{6}=\tfrac{\sqrt{3}}{2}\), and \(\dfrac{d\theta}{dt}=\tfrac{1}{3}\):</p>
+      <div class="math-display">
+        \[\frac{dD}{dt} = -2\!\left(\frac{1}{2}\right)\!\left(\frac{1}{3}\right) - 3\!\left(\frac{\sqrt{3}}{2}\right)\!\left(\frac{1}{3}\right) = -\frac{1}{3}-\frac{\sqrt{3}}{2} = \frac{-2-3\sqrt{3}}{6}\approx -1.199\]
+      </div>
+    </div>
+  </div>
+  <div class="return-link"><a href="#top">↑ Return to top</a></div>
+</div>
+
+<!-- FR 2 -->
+<div class="problem" id="fr2">
+  <div class="problem-header">
+    <span class="pnum">FR 2</span>
+    <span class="topic-tag">Rate/Accumulation — Unprocessed Orders</span>
+  </div>
+  <div class="problem-body">
+    <p>Orders received at \(r(t)=400\sqrt{9+4t-t^2}\) orders/hr, processed at 1200/hr. Initial backlog: 2000 orders. \(0\leq t\leq 5\).</p>
+
+    <div class="fr-part">
+      <div class="fr-part-label">(a) \(\displaystyle\int_3^4 r(t)\,dt\) — meaning and value</div>
+      <div class="math-display">
+        \[\int_3^4 r(t)\,dt = \int_3^4 400\sqrt{9+4t-t^2}\,dt\]
+      </div>
+      <p>Using a calculator: \(\displaystyle\int_3^4 400\sqrt{9+4t-t^2}\,dt \approx 1305.295\), so approximately <strong>1305 complete orders</strong>.</p>
+      <p><strong>Meaning:</strong> This is the total number of orders received between \(t=3\) and \(t=4\) hours after noon (i.e., between 3:00 PM and 4:00 PM).</p>
+    </div>
+
+    <div class="fr-part">
+      <div class="fr-part-label">(b) \(N(t)\) — number of unprocessed orders at time \(t\)</div>
+      <div class="math-display">
+        \[N(t) = (2000 - 1200t) + \int_0^t 400\sqrt{9+4x-x^2}\,dx\]
+      </div>
+      <p>The first term \((2000-1200t)\) accounts for the initial backlog of 2000 orders minus orders processed at 1200/hr. The integral gives the total number of orders received from time 0 to time \(t\).</p>
+    </div>
+
+    <div class="fr-part">
+      <div class="fr-part-label">(c) When is \(N(t)\) maximum on \([0,5]\)?</div>
+      <p>\(N'(t) = r(t)-1200=0\) when \(400\sqrt{9+4t-t^2}=1200\), i.e., \(\sqrt{9+4t-t^2}=3\).</p>
+      <div class="math-display">
+        \[9+4t-t^2=9 \implies t(4-t)=0 \implies t=0\text{ or }t=4\]
+      </div>
+      <p>On the interval \(0 &lt; t &lt; 4\), we confirm \(r(t)&gt;1200\): at \(t=2\), \(400\sqrt{9+8-4}=400\sqrt{13}\approx 1442&gt;1200\). ✓</p>
+      <p>So \(N'(t)>0\) on \((0,4)\) and \(N'(t)<0\) on \((4,5)\). Maximum at \(t=4\) hours (4:00 PM).</p>
+    </div>
+  </div>
+  <div class="return-link"><a href="#top">↑ Return to top</a></div>
+</div>
+
+<div class="ornament">· · ·</div>
+
+<!-- ═══════════════════════════════════════════
+     SECTION 2 · FREE RESPONSE · PART B
+════════════════════════════════════════════ -->
+<div class="section-header" id="fr-b">
+  <h2>Section 2 · Free Response, Part B</h2>
+  <div class="note">No calculator permitted &nbsp;·&nbsp; Problems 3–6</div>
+</div>
+
+<!-- FR 3 -->
+<div class="problem" id="fr3">
+  <div class="problem-header">
+    <span class="pnum">FR 3</span>
+    <span class="topic-tag">Parametric Motion — Position, Arc Length, Target Intercept</span>
+  </div>
+  <div class="problem-body">
+    <p>Rocket position \((x(t),y(t))\) from \((5,10)\); \(x'(t)=6t-3t^2,\;y'(t)=6-2t\).</p>
+
+    <div class="fr-part">
+      <div class="fr-part-label">(a) Slope and acceleration at \(t=1\)</div>
+      <div class="math-display">
+        \[x'(1)=6-3=3,\quad y'(1)=6-2=4\]
+      </div>
+      <div class="math-display">
+        \[\text{slope}=\frac{dy}{dx}\bigg|_{t=1}=\frac{y'(1)}{x'(1)}=\frac{4}{3}\]
+      </div>
+      <div class="math-display">
+        \[x''(t)=6-6t\big|_{t=1}=0,\quad y''(t)=-2\]
+      </div>
+      <p>Acceleration vector at \(t=1\): \(\langle 0,-2\rangle\).</p>
+    </div>
+
+    <div class="fr-part">
+      <div class="fr-part-label">(b) Arc length from \(t=1\) to \(t=4\)</div>
+      <div class="math-display">
+        \[L = \int_1^4\sqrt{[x'(t)]^2+[y'(t)]^2}\,dt = \int_1^4\sqrt{(6t-3t^2)^2+(6-2t)^2}\,dt\]
+      </div>
+    </div>
+
+    <div class="fr-part">
+      <div class="fr-part-label">(c) Does the rocket reach \((-45, 15)\)?</div>
+      <p>Find position by integrating:</p>
+      <div class="math-display">
+        \[x(t)=5+\int_0^t(6s-3s^2)\,ds=5+3t^2-t^3\]
+        \[y(t)=10+\int_0^t(6-2s)\,ds=10+6t-t^2\]
+      </div>
+      <p>Set \(y(t)=15\): \(t^2-6t+5=0\Rightarrow(t-1)(t-5)=0\Rightarrow t=1\) or \(t=5\).</p>
+      <p>At \(t=5\): \(x(5)=5+75-125=-45\). ✓</p>
+      <p><strong>Yes</strong>, the rocket reaches \((-45,15)\) at \(t=5\).</p>
+    </div>
+  </div>
+  <div class="return-link"><a href="#top">↑ Return to top</a></div>
+</div>
+
+<!-- FR 4 -->
+<div class="problem" id="fr4">
+  <div class="problem-header">
+    <span class="pnum">FR 4</span>
+    <span class="topic-tag">Piecewise-Defined Derivative — Analysis of \(f\), \(g\), \(h\)</span>
+  </div>
+  <div class="problem-body">
+    <p>\(f\) is defined on \([0,16]\) with \(f(0)=-3\). The graph of \(f'\) consists of 4 line segments. Also given: \(g(x)=(f(x))^2\), \(h(x)=xe^{-0.25f(x)}\), and \(y=\tfrac{4}{x}\) intersects the graph of \(f'\) at points \(P\) and \(Q\).</p>
+
+    <div class="fr-part">
+      <div class="fr-part-label">(a) Relative minimum, relative maximum, or neither at \(x=12\)?</div>
+      <p>Inspecting the graph of \(f'\), the \(y\)-coordinate of \(f'\) is 0 at \(x=12\), confirming a critical number. The values of \(f'\) are positive immediately to the left of \(x=12\) and negative immediately to the right.</p>
+      <p>Therefore, by the First Derivative Test, since \(f'(x)>0\) on \((4,12)\) and \(f'(x)<0\) on \((12,16)\), there is a <strong>relative maximum</strong> on \(f\) at \(x=12\).</p>
+    </div>
+
+    <div class="fr-part">
+      <div class="fr-part-label">(b) Equation of the line tangent to \(g\) at \(x=8\)</div>
+      <p>We use the point-slope form \(y-y_1=m(x-x_1)\). The slope of the tangent to \(g\) at \(x=8\) is \(g'(8)\).</p>
+      <p>Given \(g(x)=(f(x))^2\), by the Chain Rule:</p>
+      <div class="math-display">
+        \[g'(x)=2f(x)\cdot f'(x) \implies g'(8)=2f(8)\cdot f'(8)\]
+      </div>
+      <p>From the graph of \(f'\), the point \((8,2)\) lies on \(f'\), so \(f'(8)=\tfrac{1}{2}\). Thus:</p>
+      <div class="math-display">
+        \[g'(8) = 2f(8)\!\left(\frac{1}{2}\right) = f(8)\]
+      </div>
+      <p>Find \(f(8)\) using \(f(0)=-3\) and the signed area under \(f'\) from 0 to 8:</p>
+      <div class="math-display">
+        \[f(8)=f(0)+\int_0^8 f'(x)\,dx = -3+\tfrac{1}{2}(4)(2)+\tfrac{1}{2}(4)\!\left(\tfrac{1}{2}\right) = -3+4+1 = 2\]
+      </div>
+      <p>Therefore \(g'(8)=f(8)=2\) and \(g(8)=(f(8))^2=4\). The tangent line is:</p>
+      <div class="math-display">
+        \[y-4=2(x-8) \implies \boxed{y=2x-12}\]
+      </div>
+    </div>
+
+    <div class="fr-part">
+      <div class="fr-part-label">(c) Critical numbers of \(h(x)=xe^{-0.25f(x)}\)</div>
+      <p>Differentiate using the Product Rule and Chain Rule:</p>
+      <div class="math-display">
+        \[h'(x)=e^{-0.25f(x)}+x\cdot\!\left(-0.25f'(x)\right)e^{-0.25f(x)} = e^{-0.25f(x)}\!\left(1-0.25x\,f'(x)\right)\]
+      </div>
+      <p>Since \(e^{-0.25f(x)}>0\) for all \(x\), setting \(h'(x)=0\) requires:</p>
+      <div class="math-display">
+        \[1-0.25x\,f'(x)=0 \implies x\,f'(x)=4\]
+      </div>
+      <p>Reading points from the graph of \(f'\) to evaluate the product \(xf'(x)\):</p>
+      <table style="border-collapse:collapse; margin:12px auto 16px; font-size:0.95rem; text-align:center;">
+        <tr style="border-bottom:2px solid var(--rule);">
+          <th style="padding:6px 18px; color:var(--muted);">\(x\)</th>
+          <th style="padding:6px 18px; color:var(--muted);">\(f'(x)\)</th>
+          <th style="padding:6px 18px; color:var(--muted);">\(xf'(x)\)</th>
+        </tr>
+        <tr><td style="padding:5px 18px;">0</td><td>0</td><td>0</td></tr>
+        <tr><td style="padding:5px 18px;">2</td><td>2</td><td>4</td></tr>
+        <tr><td style="padding:5px 18px;">4</td><td>0</td><td>0</td></tr>
+        <tr><td style="padding:5px 18px;">8</td><td>\(\tfrac{1}{2}\)</td><td>4</td></tr>
+        <tr><td style="padding:5px 18px;">12</td><td>0</td><td>0</td></tr>
+        <tr style="border-top:1px solid var(--rule);"><td style="padding:5px 18px;">16</td><td>\(-\tfrac{1}{2}\)</td><td>\(-8\)</td></tr>
+      </table>
+      <p>The \(x\)-values satisfying \(xf'(x)=4\) are \(x=2\) and \(x=8\). These are the critical numbers of \(h(x)\).</p>
+    </div>
+
+    <div class="fr-part">
+      <div class="fr-part-label">(d) \(\displaystyle\int_4^8 xf''(x)\,dx\)</div>
+      <p>Apply integration by parts with \(u=x\), \(dv=f''(x)\,dx\), so \(du=dx\) and \(v=f'(x)\):</p>
+      <div class="math-display">
+        \[\int_4^8 xf''(x)\,dx = \Big[xf'(x)\Big]_4^8 - \int_4^8 f'(x)\,dx\]
+      </div>
+      <div class="math-display">
+        \[= \Big[xf'(x)-f(x)\Big]_4^8\]
+      </div>
+      <div class="math-display">
+        \[= \big(8f'(8)-f(8)\big)-\big(4f'(4)-f(4)\big)\]
+      </div>
+      <p>Reading values from the graph of \(f'\): \(f'(8)=\tfrac{1}{2}\), \(f'(4)=0\). Using values computed in (b): \(f(8)=2\). For \(f(4)\):</p>
+      <div class="math-display">
+        \[f(4)=f(0)+\int_0^4 f'(x)\,dx = -3+\tfrac{1}{2}(4)(2) = -3+4 = 1\]
+      </div>
+      <p>Substituting:</p>
+      <div class="math-display">
+        \[\left(8\cdot\tfrac{1}{2}-2\right)-\left(4\cdot 0-1\right) = (4-2)-(0-1) = 2+1 = \boxed{3}\]
+      </div>
+    </div>
+  </div>
+  <div class="return-link"><a href="#top">↑ Return to top</a></div>
+</div>
+
+<!-- FR 5 -->
+<div class="problem" id="fr5">
+  <div class="problem-header">
+    <span class="pnum">FR 5</span>
+    <span class="topic-tag">Limits, Euler's Method, Separation of Variables</span>
+  </div>
+  <div class="problem-body">
+    <p>Tangent to \(y=f(x)\) at \(x=0\) is \(y=4x+2\).</p>
+
+    <div class="fr-part">
+      <div class="fr-part-label">(a) Evaluate the limit using series expansions</div>
+      <p>From the tangent line \(y=4x+2\) at \(x=0\): \(f(0)=2\) and \(f'(0)=4\).</p>
+      <p>Since \(g(x)=\displaystyle\int_0^x f(t)\,dt\), by FTC: \(g(0)=0\), \(g'(0)=f(0)=2\), \(g''(0)=f'(0)=4\). So:</p>
+      <div class="math-display">
+        \[g(x) = 2x + 2x^2 + \cdots\]
+      </div>
+      <p>Expand the numerator using the Maclaurin series for \(\sin(2x)\):</p>
+      <div class="math-display">
+        \[\sin(2x)-g(x) = \left(2x - \frac{4x^3}{3}+\cdots\right) - \left(2x+2x^2+\cdots\right) = -2x^2 + \text{higher-order terms}\]
+      </div>
+      <p>Expand the denominator:</p>
+      <div class="math-display">
+        \[e^{3x}-\cos(2x)-3x = \left(1+3x+\frac{9x^2}{2}+\cdots\right)-\left(1-2x^2+\cdots\right)-3x = \frac{9x^2}{2}+2x^2+\cdots = \frac{13x^2}{2}+\cdots\]
+      </div>
+      <p>Both numerator and denominator have leading term \(x^2\), so dividing through by \(x^2\):</p>
+      <div class="math-display">
+        \[\lim_{x\to 0}\frac{\sin(2x)-g(x)}{e^{3x}-\cos(2x)-3x} = \frac{-2}{13/2} = -\frac{4}{13}\]
+      </div>
+    </div>
+
+    <div class="fr-part">
+      <div class="fr-part-label">(b) Euler's method for \(\dfrac{dy}{dx}=\dfrac{y^2}{x+1}\), \(f(0)=2\), approximate \(f(1/2)\) with 2 steps</div>
+      <p>Step size \(h=0.25\). Starting at \((0,2)\):</p>
+      <p><strong>Step 1:</strong> \(f'(0)=\frac{4}{1}=4\). \(y_1=2+4(0.25)=3\) at \(x=0.25\).</p>
+      <p><strong>Step 2:</strong> \(f'(0.25)=\frac{9}{1.25}=7.2\). \(y_2=3+7.2(0.25)=3+1.8=4.8\) at \(x=0.5\).</p>
+      <div class="math-display">
+        \[f\!\left(\tfrac{1}{2}\right)\approx 4.8\]
+      </div>
+    </div>
+
+    <div class="fr-part">
+      <div class="fr-part-label">(c) Separation of variables for \(\dfrac{dy}{dx}=\dfrac{y^2}{x+1}\), \(f(0)=2\)</div>
+      <div class="math-display">
+        \[\frac{dy}{y^2}=\frac{dx}{x+1}\implies -\frac{1}{y}=\ln|x+1|+C\]
+      </div>
+      <p>At \(x=0,\,y=2\): \(-\tfrac{1}{2}=0+C\Rightarrow C=-\tfrac{1}{2}\).</p>
+      <div class="math-display">
+        \[-\frac{1}{y}=\ln(x+1)-\frac{1}{2}\implies y=\frac{1}{\frac{1}{2}-\ln(x+1)}=\frac{2}{1-2\ln(x+1)}\]
+      </div>
+    </div>
+  </div>
+  <div class="return-link"><a href="#top">↑ Return to top</a></div>
+</div>
+
+<!-- FR 6 -->
+<div class="problem" id="fr6">
+  <div class="problem-header">
+    <span class="pnum">FR 6</span>
+    <span class="topic-tag">Maclaurin Series — \(f(x)=\dfrac{1}{(1+x^2)^2}\)</span>
+  </div>
+  <div class="problem-body">
+    <p>Maclaurin series for \(f(x)=\dfrac{1}{(1+x^2)^2}\) is given as \(1-2x^2+3x^4-4x^6+\cdots+(-1)^n(n+1)x^{2n}+\cdots\)</p>
+
+    <div class="fr-part">
+      <div class="fr-part-label">(a) Use the series to find:</div>
+      <p><strong>i. \(f^{(4)}(0)\):</strong></p>
+      <p>The Maclaurin coefficient of \(x^4\) is \(\dfrac{f^{(4)}(0)}{4!}\). From the series, coefficient of \(x^4\) is \(3\).</p>
+      <div class="math-display">
+        \[f^{(4)}(0) = 3\cdot 4! = 3\cdot 24 = 72\]
+      </div>
+      <p><strong>ii. Coefficient of \(x^{22}\):</strong></p>
+      <p>Set \(2n=22\Rightarrow n=11\). Coefficient: \((-1)^{11}(12) = -12\).</p>
+    </div>
+
+    <div class="fr-part">
+      <div class="fr-part-label">(b) Radius of convergence</div>
+      <p>The series is built from \(\dfrac{1}{1+x^2}=\sum_{n=0}^\infty(-1)^n x^{2n}\), valid for \(|x^2|<1\), i.e., \(|x|<1\).</p>
+      <p>Differentiating: the radius of convergence is preserved. <strong>\(R=1\).</strong></p>
+      <div class="step">
+        <div class="step-label">Ratio Test confirmation</div>
+        <div class="math-display">
+          \[\lim_{n\to\infty}\left|\frac{(n+2)x^{2n+2}}{(n+1)x^{2n}}\right|=x^2\lim_{n\to\infty}\frac{n+2}{n+1}=x^2<1\implies|x|<1\]
+        </div>
+      </div>
+    </div>
+
+    <div class="fr-part">
+      <div class="fr-part-label">(c) Lagrange error bound for \(|f(0.5)-P(0.5)|\)</div>
+      <p>Let \(P(x)\) be the fourth-degree Maclaurin polynomial: \(P(x)=1-2x^2+3x^4\).</p>
+      <p>The error is bounded by the next term: \(|f(x)-P(x)|\leq|{-4x^6}|\) for \(|x|\leq 0.5\) (since the series is alternating with decreasing terms).</p>
+      <div class="math-display">
+        \[|f(0.5)-P(0.5)|\leq 4\cdot(0.5)^6 = 4\cdot\frac{1}{64}=\frac{1}{16}<\frac{1}{10}\checkmark\]
+      </div>
+      <p>Alternatively, using the graph of \(f^{(5)}\): \(\max_{|x|\leq 0.5}|f^{(5)}(x)|\approx 357.685\) (from the graph at \(x\approx 0.202\)).</p>
+      <div class="math-display">
+        \[|f(0.5)-P(0.5)|\leq\frac{M\cdot(0.5)^5}{5!}=\frac{357.685\cdot(0.031250)}{120}\approx\frac{11.178}{120}\approx 0.093<\frac{1}{10}\checkmark\]
+      </div>
+    </div>
+
+    <div class="fr-part">
+      <div class="fr-part-label">(d) Maclaurin series for \(\displaystyle\int_0^x\frac{1}{(1+t^2)^2}\,dt\)</div>
+      <p>Integrate the series term by term:</p>
+      <div class="math-display">
+        \[\int_0^x\frac{1}{(1+t^2)^2}\,dt = x - \frac{2x^3}{3}+\frac{3x^5}{5}-\frac{4x^7}{7}+\cdots+\frac{(-1)^n(n+1)x^{2n+1}}{2n+1}+\cdots\]
+      </div>
+    </div>
+  </div>
+  <div class="return-link"><a href="#top">↑ Return to top</a></div>
+</div>
+
+</main>
+</body>
+</html>
